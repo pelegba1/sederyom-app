@@ -1,0 +1,112 @@
+<style>
+  .rtl { direction: rtl; text-align: right; font-family: "Assistant", "Segoe UI", Arial, sans-serif; }
+  .chat { background:#f4f4f6; border-radius:14px; padding:14px; }
+  .q { background:#e3e6ee; color:#1A2347; border-radius:16px; padding:8px 12px; display:inline-block; margin-bottom:10px; font-size:14px; }
+  .a { color:#1A2347; font-size:14px; margin:8px 2px; }
+  .sy { background:#fff; border:1px solid #D6E0EE; border-radius:12px; overflow:hidden; color:#1A2347; font-size:14px; position:relative; }
+  .sy::before { content:""; position:absolute; top:0; bottom:0; right:34px; width:1px; background:rgba(232,80,91,.55); }
+  .hd { padding:10px 14px 8px 14px; border-bottom:1px solid #E5EBF4; display:flex; justify-content:space-between; align-items:baseline; }
+  .hd b { font-size:16px; color:#0F1636; }
+  .hd small { color:#5A6482; font-size:12px; }
+  .row { display:flex; gap:10px; padding:7px 14px; border-bottom:1px solid #E5EBF4; align-items:baseline; }
+  .row:last-child { border-bottom:0; }
+  .n { width:16px; color:#5A6482; font-size:12px; text-align:center; flex:none; }
+  .s { flex:1; }
+  .m { color:#4A5472; font-size:12px; }
+  .cx .s { text-decoration:line-through; color:#B3261A; }
+  .tag { font-size:12px; border-radius:6px; padding:1px 6px; margin-inline-start:6px; }
+  .t-cx { color:#B3261A; background:rgba(232,80,91,.10); }
+  .t-ch { color:#A3216A; background:rgba(240,80,160,.13); }
+  .t-ex { color:#5E4A00; background:rgba(255,210,0,.38); }
+  .exrow { background:rgba(255,210,0,.18); }
+  .chrow { background:rgba(240,80,160,.06); }
+  .banner { margin:10px 14px; padding:8px 10px; border-radius:8px; background:rgba(255,210,0,.38); color:#5E4A00; font-size:13px; }
+  .sum { display:flex; gap:8px; padding:10px 14px; flex-wrap:wrap; }
+  .pill { border:1px solid #D6E0EE; border-radius:999px; padding:3px 10px; font-size:12px; }
+  .more { color:#2347C5; font-size:13px; padding:8px 14px; border-top:1px solid #E5EBF4; }
+  .days { display:flex; gap:4px; padding:8px 10px; border-bottom:1px solid #E5EBF4; }
+  .d { flex:1; text-align:center; font-size:12px; padding:4px 0; border-radius:8px; color:#4A5472; position:relative; }
+  .d.on { background:rgba(255,214,0,.45); color:#1A2347; font-weight:600; }
+  .d .dot { display:block; height:5px; }
+  .d .dot i { display:inline-block; width:5px; height:5px; border-radius:50%; margin:0 1px; }
+  .foot { color:#5A6482; font-size:12px; padding:6px 14px 10px; }
+</style>
+
+<div dir="rtl">
+<h2>מה התלמיד רואה כששואל "מה יש לי מחר?"</h2>
+<p class="subtitle">שלושה כיוונים לאותו כרטיס, בצבעי המחברת של האפליקציה. אפשר ללחוץ על מה שמתאים.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image rtl"><div class="chat">
+      <div class="q">מה יש לי מחר?</div>
+      <div class="sy">
+        <div class="hd"><b>מחר, יום רביעי 5.11</b><small>7 שיעורים · 8:00–14:15</small></div>
+        <div class="banner">📝 מבחן באנגלית, שעה 3</div>
+        <div class="row"><span class="n">1</span><span class="s">מתמטיקה</span><span class="m">כהן · 12</span></div>
+        <div class="row"><span class="n">2</span><span class="s">מתמטיקה</span><span class="m">כהן · 12</span></div>
+        <div class="row exrow"><span class="n">3</span><span class="s">אנגלית<span class="tag t-ex">מבחן</span></span><span class="m">לוי · 8</span></div>
+        <div class="row cx"><span class="n">4</span><span class="s">היסטוריה</span><span class="tag t-cx">בוטל</span></div>
+        <div class="row chrow"><span class="n">5</span><span class="s">ספרות<span class="tag t-ch">חדר 21 במקום 14</span></span><span class="m">אברהם</span></div>
+        <div class="row"><span class="n">6</span><span class="s">פיזיקה</span><span class="m">דהן · מעבדה</span></div>
+        <div class="row"><span class="n">7</span><span class="s">חינוך</span><span class="m">שגב · 12</span></div>
+        <div class="foot">סדר יום · עודכן היום ב־16:40</div>
+      </div>
+      <div class="a">מחר יש לך מבחן באנגלית בשעה השלישית, והיסטוריה בוטלה…</div>
+    </div></div>
+    <div class="card-body">
+      <h3>א. היום המלא</h3>
+      <p>כל השיעורים כמו באפליקציה. מבחן בפס צהוב למעלה, ביטול באדום, שינוי בוורוד.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image rtl"><div class="chat">
+      <div class="q">מה יש לי מחר?</div>
+      <div class="sy">
+        <div class="hd"><b>מחר, יום רביעי 5.11</b><small>8:00–14:15</small></div>
+        <div class="sum"><span class="pill">7 שיעורים</span><span class="pill" style="background:rgba(255,210,0,.38)">מבחן 1</span><span class="pill" style="background:rgba(240,80,160,.13)">2 שינויים</span></div>
+        <div class="row exrow"><span class="n">3</span><span class="s">אנגלית<span class="tag t-ex">מבחן</span></span><span class="m">לוי · 8</span></div>
+        <div class="row cx"><span class="n">4</span><span class="s">היסטוריה</span><span class="tag t-cx">בוטל</span></div>
+        <div class="row chrow"><span class="n">5</span><span class="s">ספרות<span class="tag t-ch">חדר 21 במקום 14</span></span><span class="m">אברהם</span></div>
+        <div class="more">להציג את כל 7 השיעורים ▾</div>
+      </div>
+      <div class="a">מחר יש לך מבחן באנגלית בשעה השלישית…</div>
+    </div></div>
+    <div class="card-body">
+      <h3>ב. קודם מה שחשוב</h3>
+      <p>סיכום קצר, ורק המבחן והשינויים. שאר השיעורים נפתחים בלחיצה.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image rtl"><div class="chat">
+      <div class="q">מה יש לי מחר?</div>
+      <div class="sy">
+        <div class="days">
+          <div class="d">א׳<span class="dot"></span></div>
+          <div class="d">ב׳<span class="dot"></span></div>
+          <div class="d">ג׳<span class="dot"></span></div>
+          <div class="d on">ד׳<span class="dot"><i style="background:#C8A000"></i><i style="background:#A3216A"></i></span></div>
+          <div class="d">ה׳<span class="dot"><i style="background:#C8A000"></i></span></div>
+          <div class="d">ו׳<span class="dot"></span></div>
+        </div>
+        <div class="row"><span class="n">1</span><span class="s">מתמטיקה</span><span class="m">כהן · 12</span></div>
+        <div class="row"><span class="n">2</span><span class="s">מתמטיקה</span><span class="m">כהן · 12</span></div>
+        <div class="row exrow"><span class="n">3</span><span class="s">אנגלית<span class="tag t-ex">מבחן</span></span><span class="m">לוי · 8</span></div>
+        <div class="row cx"><span class="n">4</span><span class="s">היסטוריה</span><span class="tag t-cx">בוטל</span></div>
+        <div class="row chrow"><span class="n">5</span><span class="s">ספרות<span class="tag t-ch">חדר 21</span></span><span class="m">אברהם</span></div>
+        <div class="row"><span class="n">6</span><span class="s">פיזיקה</span><span class="m">דהן</span></div>
+        <div class="row"><span class="n">7</span><span class="s">חינוך</span><span class="m">שגב</span></div>
+      </div>
+      <div class="a">מחר יש לך מבחן באנגלית…</div>
+    </div></div>
+    <div class="card-body">
+      <h3>ג. שבוע שאפשר לדפדף בו</h3>
+      <p>כמו א׳, ובראש פס ימים: אפשר לעבור ליום אחר בתוך הכרטיס בלי לשאול שוב. נקודות מסמנות מבחן ושינוי.</p>
+    </div>
+  </div>
+
+</div>
+</div>

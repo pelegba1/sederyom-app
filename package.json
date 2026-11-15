@@ -1,0 +1,41 @@
+{
+  "name": "sederyom",
+  "private": true,
+  "version": "1.0.0",
+  "description": "SederYom - personal day/week aggregator (Google + Mashov + Shahaf)",
+  "workspaces": [
+    "shared",
+    "server",
+    "app"
+  ],
+  "scripts": {
+    "server:dev": "npm run dev -w @sederyom/server",
+    "server:test": "npm run test -w @sederyom/server",
+    "server:build": "npm run build -w @sederyom/server",
+    "chat:card": "node scripts/build-day-card.mjs",
+    "chat:plugin": "python scripts/build-chat-plugin.py",
+    "typecheck": "npm run typecheck -w @sederyom/shared && npm run typecheck -w @sederyom/server && npm run typecheck -w sederyom-app",
+    "app:start": "npm run start -w sederyom-app",
+    "app:android": "npm run android -w sederyom-app",
+    "app:build": "npm run build:production -w sederyom-app",
+    "app:export": "npm run export:android -w sederyom-app",
+    "app:test": "npm run test -w sederyom-app",
+    "prisma:dev": "npm run prisma:dev -w @sederyom/server",
+    "vercel-build": "npm run prisma:generate -w @sederyom/server && npx prisma migrate deploy --schema server/prisma/schema.prisma && npm run build -w @sederyom/server",
+    "postinstall": "patch-package"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "patch-package": "^8.0.1"
+  },
+  "dependencies": {
+    "expo": "~57.0.18",
+    "react": "19.2.3",
+    "react-native": "0.86.3"
+  },
+  "overrides": {
+    "react-dom": "$react"
+  }
+}

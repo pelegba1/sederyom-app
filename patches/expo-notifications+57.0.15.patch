@@ -1,0 +1,14 @@
+diff --git a/node_modules/expo-notifications/android/src/main/java/expo/modules/notifications/notifications/presentation/builders/ExpoNotificationBuilder.kt b/node_modules/expo-notifications/android/src/main/java/expo/modules/notifications/notifications/presentation/builders/ExpoNotificationBuilder.kt
+index 610d303..3acf90e 100644
+--- a/node_modules/expo-notifications/android/src/main/java/expo/modules/notifications/notifications/presentation/builders/ExpoNotificationBuilder.kt
++++ b/node_modules/expo-notifications/android/src/main/java/expo/modules/notifications/notifications/presentation/builders/ExpoNotificationBuilder.kt
+@@ -99,6 +99,9 @@ open class ExpoNotificationBuilder(
+ 
+     builder.setAutoCancel(content.isAutoDismiss)
+     builder.setOngoing(content.isSticky)
++    // SederYom (patch-package): a notification whose data names `timeoutAfterMs` takes itself
++    // back after that long, so the next lesson's notes replace each other on the lock screen.
++    content.body?.optLong("timeoutAfterMs", 0L)?.takeIf { it > 0L }?.let { builder.setTimeoutAfter(it) }
+ 
+     // see "Notification anatomy" https://developer.android.com/develop/ui/views/notifications#Templates
+     builder.setContentTitle(content.title)

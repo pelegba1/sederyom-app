@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>סיכום שנה: סקיצות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Secular+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF; --deep: #F1F3F8; --line: #D6E0EE; --text: #1A2347; --strong: #0F1636; --muted: #4A5472; --faint: #5A6482;
+    --pen: #2347C5; --margin: rgba(232,80,91,.55); --mark: rgba(255,214,0,.45); --cancel: #B3261A; --cancelSoft: rgba(232,80,91,.10);
+    --change: #A3216A; --changeSoft: rgba(240,80,160,.13); --ok: #1E7346;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--deep); color: var(--text); font-family: Assistant, system-ui, sans-serif; padding: 24px 16px 48px; }
+  h1 { font-family: 'Secular One', sans-serif; font-weight: 400; font-size: 26px; margin: 0 0 6px; color: var(--strong); }
+  h2 { font-size: 18px; font-weight: 700; margin: 36px 0 4px; color: var(--strong); }
+  p.note { margin: 0 0 14px; color: var(--muted); font-size: 15px; max-width: 62ch; line-height: 1.5; }
+  .row { display: flex; flex-wrap: wrap; gap: 18px; }
+  figure { margin: 0; width: 252px; }
+  figcaption { font-size: 14px; color: var(--faint); margin-top: 8px; line-height: 1.4; }
+
+  .phone {
+    position: relative; width: 252px; height: 448px; border-radius: 22px; overflow: hidden; background: var(--bg);
+    border: 1px solid var(--line); box-shadow: 0 6px 18px rgba(26,35,71,.10);
+    background-image: repeating-linear-gradient(to bottom, transparent 0 31px, var(--line) 31px 32px);
+    background-position: 0 6px;
+  }
+  /* The red margin line, at the start edge (right, in Hebrew). */
+  .phone::before { content: ''; position: absolute; top: 0; bottom: 0; right: 30px; width: 1.5px; background: var(--margin); }
+  .bar { position: absolute; top: 14px; right: 14px; left: 14px; display: flex; gap: 3px; }
+  .bar i { flex: 1; height: 3px; border-radius: 2px; background: var(--line); }
+  .bar i.on { background: var(--pen); }
+  .close { position: absolute; top: 26px; left: 14px; font-size: 20px; color: var(--muted); line-height: 1; }
+  .kicker { position: absolute; top: 30px; right: 44px; font-size: 14px; font-weight: 600; color: var(--muted); }
+  .body { position: absolute; top: 102px; right: 44px; left: 20px; }
+  .num { font-family: 'Secular One', sans-serif; font-size: 92px; line-height: 96px; color: var(--strong); display: inline-block; position: relative; padding: 0 6px; isolation: isolate; }
+  .num.word { font-size: 52px; line-height: 64px; }
+  /* The yellow highlighter behind the number. */
+  .num.hl::after { content: ''; position: absolute; right: -2px; left: -2px; bottom: 14px; height: 34px; background: var(--mark); z-index: -1; border-radius: 3px; transform: rotate(-1.2deg); }
+  .num.red { color: var(--cancel); }
+  .unit { font-size: 22px; font-weight: 800; color: var(--strong); margin-top: 0; line-height: 32px; }
+  .line { font-size: 17px; line-height: 32px; color: var(--text); margin-top: 32px; }
+  .line b { font-weight: 700; }
+  .since { font-size: 14px; line-height: 32px; color: var(--faint); }
+  .foot { position: absolute; bottom: 16px; right: 44px; left: 16px; display: flex; align-items: center; justify-content: space-between; }
+  .src { font-size: 14px; font-weight: 600; color: var(--pen); text-decoration: underline; text-underline-offset: 3px; }
+  .share { font-size: 15px; font-weight: 700; color: #fff; background: var(--pen); border-radius: 999px; padding: 9px 16px; }
+  .own { font-size: 14px; font-weight: 600; color: var(--muted); }
+  .pen { position: absolute; inset: -8px -12px; pointer-events: none; }
+  .brand { position: absolute; bottom: 20px; right: 44px; left: 20px; display: flex; align-items: center; gap: 8px; font-family: 'Secular One', sans-serif; font-size: 17px; color: var(--strong); }
+  .brand span { width: 26px; height: 26px; border-radius: 7px; border: 1.5px dashed var(--faint); display: inline-block; }
+
+  .today { width: 300px; background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; position: relative; }
+  .today .t { font-weight: 700; font-size: 18px; color: var(--strong); }
+  .today .s { font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .today .go { color: var(--pen); font-weight: 700; font-size: 15px; margin-top: 10px; display: inline-block; }
+  .today .x { position: absolute; top: 10px; left: 12px; color: var(--faint); font-size: 18px; }
+  .setrow { width: 300px; background: var(--bg); border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); padding: 14px 16px; display: flex; justify-content: space-between; font-size: 17px; font-weight: 600; }
+  .setrow span { color: var(--faint); }
+  .sheet { width: 252px; background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; font-size: 15px; }
+  .sheet h3 { margin: 0 0 6px; font-size: 16px; }
+  .sheet div { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 6px 0; }
+  .sheet div:last-child { border: 0; }
+  .sheet s { color: var(--cancel); }
+</style>
+</head>
+<body>
+<h1>סיכום שנה: סקיצות לאישור</h1>
+<p class="note">המספרים כאן הם דוגמה ולא נתונים אמיתיים. הסגנון הוא המחברת של האפליקציה: דף שורות, קו שוליים אדום, עט כחול, מרקר צהוב. מספר אחד גדול בכל כרטיס ושורה אחת מתחתיו. נגיעה בצד שמאל מתקדמת, בצד ימין חוזרת.</p>
+
+<h2>הכרטיסים</h2>
+<div class="row">
+
+<figure><div class="phone">
+  <div class="bar"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="close">×</div>
+  <div class="kicker">השנה שלך עד עכשיו</div>
+  <div class="body"><div class="num hl">39</div><div class="unit">ימי לימודים</div>
+    <div class="line">מ־1 בספטמבר עד 10 בנובמבר.</div><div class="since">השינויים נספרים מ־20 באוקטובר.</div></div>
+  <div class="foot"><span class="src">מאיפה המספר</span><span class="share">שיתוף</span></div>
+</div><figcaption>פתיחה. תמיד כותבת איזו תקופה הסיכום מכסה.</figcaption></figure>
+
+<figure><div class="phone">
+  <div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="close">×</div>
+  <div class="kicker">שעות במערכת</div>
+  <div class="body"><div class="num hl">88</div><div class="unit">שעות של שיעורים</div>
+    <div class="line"><b>117</b> שיעורים ב־<b>39</b> ימים.</div></div>
+  <div class="foot"><span class="src">מאיפה המספר</span><span class="share">שיתוף</span></div>
+</div><figcaption>שעות. לפי המערכת שפורסמה, מ־1 בספטמבר.</figcaption></figure>
+
+<figure><div class="phone">
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><div class="close">×</div>
+  <div class="kicker">שיעורים שבוטלו</div>
+  <div class="body"><div class="num red">5<svg class="pen" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M12 52 C10 22, 40 8, 62 12 C88 16, 96 40, 88 62 C80 86, 44 94, 24 82 C8 72, 8 50, 16 38" fill="none" stroke="#B3261A" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+    <div class="unit">שיעורים בוטלו</div>
+    <div class="line">כמעט <b>4 שעות</b> חופשיות.</div><div class="since">מאז 20 באוקטובר.</div></div>
+  <div class="foot"><span class="src">מאיפה המספר</span><span class="share">שיתוף</span></div>
+</div><figcaption>ביטולים. העט האדום של המורה, כמו שיעור מבוטל באפליקציה.</figcaption></figure>
+
+<figure><div class="phone">
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div><div class="close">×</div>
+  <div class="kicker">הכי הרבה ביטולים</div>
+  <div class="body"><div class="num word hl">מתמטיקה</div><div class="unit">בוטלה 3 פעמים</div>
+    <div class="line">והיום שהכי בוטל בו: <b>יום ראשון</b>.</div><div class="since">מאז 20 באוקטובר.</div></div>
+  <div class="foot"><span class="src">מאיפה המספר</span><span class="share">שיתוף</span></div>
+</div><figcaption>מקצוע ויום מובילים. בתיקו לא מוצג שם.</figcaption></figure>
+
+<figure><div class="phone">
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="close">×</div>
+  <div class="kicker">שיעור ראשון שבוטל</div>
+  <div class="body"><div class="num hl">3</div><div class="unit">בקרים של שינה</div>
+    <div class="line">ביחד <b>שעתיים וחצי</b> עד השיעור הראשון שהתקיים.</div></div>
+  <div class="foot"><span class="src">מאיפה המספר</span><span class="share">שיתוף</span></div>
+</div><figcaption>שינה. רק יום שהיה בו שיעור אחר כך.</figcaption></figure>
+
+<figure><div class="phone">
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><div class="close">×</div>
+  <div class="kicker">משימות</div>
+  <div class="body"><div class="num hl">11</div><div class="unit">משימות סומנו</div>
+    <div class="line"><b>4 מתוך 6</b> לפני המועד.</div><div class="since">הרצף הכי ארוך: 5 ימים.</div></div>
+  <div class="foot"><span class="src">מאיפה המספר</span><span class="share">שיתוף</span></div>
+</div><figcaption>משימות ושיעורי בית שסומנו.</figcaption></figure>
+
+<figure><div class="phone">
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><div class="close">×</div>
+  <div class="kicker">ציונים</div>
+  <div class="body"><div class="num hl">85</div><div class="unit">הממוצע שלך</div>
+    <div class="line">ב־<b>6</b> ציונים. הכי חזק: <b>מתמטיקה</b>.</div><div class="since">החצי השני גבוה ב־10 נקודות מהראשון.</div></div>
+  <div class="foot"><span class="src">מאיפה המספר</span><span class="own">נשאר אצלך</span></div>
+</div><figcaption>ציונים. בלי כפתור שיתוף. כך גם איחורים וחיסורים.</figcaption></figure>
+
+<figure><div class="phone">
+  <div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><div class="close">×</div>
+  <div class="kicker">סיום</div>
+  <div class="body"><div class="num word">זהו,<br>עד עכשיו.</div>
+    <div class="line">הסיכום מתעדכן כל יום, ונמצא בהגדרות.</div></div>
+  <div class="foot"><span></span><span class="share">לראות שוב</span></div>
+</div><figcaption>סיום.</figcaption></figure>
+</div>
+
+<h2>התמונה שמשתפים</h2>
+<p class="note">אותו כרטיס, בלי פס ההתקדמות ובלי הכפתורים, עם הלוגו והשם למטה. בלי שם התלמיד ובלי שם הכיתה.</p>
+<div class="row">
+<figure><div class="phone">
+  <div class="kicker">שיעור ראשון שבוטל</div>
+  <div class="body"><div class="num hl">3</div><div class="unit">בקרים של שינה</div>
+    <div class="line">ביחד <b>שעתיים וחצי</b> עד השיעור הראשון שהתקיים.</div><div class="since">מאז 20 באוקטובר.</div></div>
+  <div class="brand"><span></span>סדר יום</div>
+</div><figcaption>1080×1920. הריבוע המקווקו הוא מקום הלוגו.</figcaption></figure>
+</div>
+
+<h2>"מאיפה המספר"</h2>
+<p class="note">חלונית שנפתחת מעל הכרטיס ומראה את השורות שנספרו. כך בודקים מספר ביד.</p>
+<div class="row">
+<div class="sheet"><h3>5 שיעורים שבוטלו</h3>
+  <div><span>יום א׳ 25.10, שעה 1</span><s>מתמטיקה</s></div>
+  <div><span>יום א׳ 1.11, שעה 1</span><s>מתמטיקה</s></div>
+  <div><span>יום ג׳ 3.11, שעה 3</span><s>היסטוריה</s></div>
+  <div><span>יום ד׳ 4.11, שעה 2</span><s>אנגלית</s></div>
+  <div><span>יום א׳ 8.11, שעה 1</span><s>מתמטיקה</s></div>
+</div>
+</div>
+
+<h2>הכניסות</h2>
+<div class="row">
+<div><div class="today"><div class="x">×</div><div class="t">סיכום השנה שלך מוכן</div><div class="s">39 ימי לימודים, 5 ביטולים, 11 משימות.</div><span class="go">לפתוח</span></div>
+  <p class="note" style="margin-top:8px">כרטיס במסך היום, מ־14.6.2027 עד 31.7. אפשר לסגור.</p></div>
+<div><div class="setrow">סיכום השנה עד עכשיו<span>‹</span></div>
+  <p class="note" style="margin-top:8px">שורה בהגדרות, תמיד, לתלמידים.</p></div>
+</div>
+</body>
+</html>

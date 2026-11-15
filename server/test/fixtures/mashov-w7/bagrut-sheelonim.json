@@ -1,0 +1,291 @@
+[
+  {
+    "id": 233552,
+    "name": "תנ\"ך - כללי (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 1261,
+    "examType": 0,
+    "examDate": "2026-05-28T00:00:00",
+    "examStartTime": "12:00",
+    "examEndTime": "14:50",
+    "endEditTime": "2026-05-27T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 233554,
+    "name": "תנ\"ך כללי (הערכה חלופית)",
+    "moed": 202606,
+    "semel": 1263,
+    "examType": 1,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 233750,
+    "name": "ספרות - כללי (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 8281,
+    "examType": 0,
+    "examDate": "2026-06-17T00:00:00",
+    "examStartTime": "12:30",
+    "examEndTime": "15:20",
+    "endEditTime": "2026-06-16T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 233752,
+    "name": "ספרות - כללי (הערכה חלופית)",
+    "moed": 202606,
+    "semel": 8283,
+    "examType": 1,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 233832,
+    "name": "עברית באקדמיה (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 11251,
+    "examType": 0,
+    "examDate": "2026-07-15T00:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 233833,
+    "name": "עברית - אקדמיה (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 11261,
+    "examType": 0,
+    "examDate": "2026-05-07T00:00:00",
+    "examStartTime": "13:00",
+    "examEndTime": "15:15",
+    "endEditTime": "2026-05-06T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 236233,
+    "name": "עברית - אקדמיה (הערכה חיצונית)",
+    "moed": 202608,
+    "semel": 11261,
+    "examType": 0,
+    "examDate": "2026-07-09T00:00:00",
+    "examStartTime": "10:00",
+    "examEndTime": "12:15",
+    "endEditTime": "2026-07-08T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 233842,
+    "name": "עברית (הערכה חלופית)",
+    "moed": 202606,
+    "semel": 11283,
+    "examType": 1,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 233949,
+    "name": "אנגלית-אוצר מילים E (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 16471,
+    "examType": 0,
+    "examDate": "2026-05-18T00:00:00",
+    "examStartTime": "11:00",
+    "examEndTime": "12:30",
+    "endEditTime": "2026-05-17T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 236582,
+    "name": "אנגלית ז - G (הערכה חיצונית)",
+    "moed": 202701,
+    "semel": 16582,
+    "examType": 0,
+    "examDate": "2027-01-21T00:00:00",
+    "examStartTime": "14:00",
+    "examEndTime": "15:45",
+    "endEditTime": "2027-01-20T20:00:00",
+    "endInnerEditTime": "2027-02-15T00:00:00"
+  },
+  {
+    "id": 236586,
+    "name": "אנגלית-דבו' והב' הנש (הערכה חיצונית)",
+    "moed": 202701,
+    "semel": 16586,
+    "examType": 0,
+    "examDate": "2027-02-15T00:00:00",
+    "endInnerEditTime": "2027-02-15T00:00:00"
+  },
+  {
+    "id": 230700,
+    "name": "היסטוריה -משימה 1 (הערכה חיצונית)",
+    "moed": 202506,
+    "semel": 22221,
+    "examType": 0,
+    "examDate": "2025-11-28T00:00:00",
+    "endEditTime": "2025-11-28T23:59:00",
+    "endInnerEditTime": "2025-11-28T23:59:00"
+  },
+  {
+    "id": 236621,
+    "name": "היסטוריה - סוגיות- משימה 2 (הערכה חיצונית)",
+    "moed": 202701,
+    "semel": 22222,
+    "examType": 0,
+    "examDate": "2027-02-15T00:00:00",
+    "endEditTime": "2027-02-15T00:00:00",
+    "endInnerEditTime": "2027-02-15T00:00:00"
+  },
+  {
+    "id": 233497,
+    "name": "היסטוריה -בחינה - שואה ומאבק (הערכה חיצונית)",
+    "moed": 202601,
+    "semel": 22225,
+    "examType": 0,
+    "examDate": "2026-01-29T00:00:00",
+    "examStartTime": "13:00",
+    "examEndTime": "15:00",
+    "endEditTime": "2026-01-28T20:00:00",
+    "endInnerEditTime": "2026-02-15T00:00:00"
+  },
+  {
+    "id": 234040,
+    "name": "היסטוריה -בחינה - שואה ומאבק (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 22225,
+    "examType": 0,
+    "examDate": "2026-06-01T00:00:00",
+    "examStartTime": "13:00",
+    "examEndTime": "15:15",
+    "endEditTime": "2026-05-31T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 234217,
+    "name": "אזרחות (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 34263,
+    "examType": 0,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 234261,
+    "name": "מתמטיקה - תכנית חדשה (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 35571,
+    "examType": 0,
+    "examDate": "2026-05-13T00:00:00",
+    "examStartTime": "09:00",
+    "examEndTime": "13:20",
+    "endEditTime": "2026-05-12T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 234274,
+    "name": "מבוא לפיזיקה (הערכה פנימית)",
+    "moed": 202606,
+    "semel": 36183,
+    "examType": 2,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 234280,
+    "name": "פיזיקה מכניקה (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 36361,
+    "examType": 0,
+    "examDate": "2026-06-15T00:00:00",
+    "examStartTime": "13:00",
+    "examEndTime": "15:15",
+    "endEditTime": "2026-06-14T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 234293,
+    "name": "מבוא לכימיה (הערכה פנימית)",
+    "moed": 202606,
+    "semel": 37183,
+    "examType": 2,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 234381,
+    "name": "מבוא לביולוגיה (הערכה פנימית)",
+    "moed": 202606,
+    "semel": 43183,
+    "examType": 2,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 234746,
+    "name": "השכלה כללית בחברה ור (הערכה פנימית)",
+    "moed": 202606,
+    "semel": 84073,
+    "examType": 2,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 234747,
+    "name": "השכלה כללית בחברה ור (הערכה פנימית)",
+    "moed": 202606,
+    "semel": 84083,
+    "examType": 2,
+    "examDate": "2026-07-15T00:00:00",
+    "endEditTime": "2026-07-15T23:59:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 232832,
+    "name": "חינוך תעבורתי (הערכה חיצונית)",
+    "moed": 202505,
+    "semel": 700181,
+    "examType": 0
+  },
+  {
+    "id": 235656,
+    "name": "מדעי המחשב (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 899271,
+    "examType": 0,
+    "examDate": "2026-06-04T00:00:00",
+    "examStartTime": "13:00",
+    "examEndTime": "16:30",
+    "endEditTime": "2026-06-03T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 235667,
+    "name": "מדעי המחשב (הערכה חיצונית)",
+    "moed": 202606,
+    "semel": 899371,
+    "examType": 0,
+    "examDate": "2026-06-25T00:00:00",
+    "examStartTime": "12:30",
+    "examEndTime": "15:20",
+    "endEditTime": "2026-06-24T20:00:00",
+    "endInnerEditTime": "2026-07-15T23:59:00"
+  },
+  {
+    "id": 232273,
+    "name": "מדעי המחשב-חלופת הע' (הערכה חלופית)",
+    "moed": 202506,
+    "semel": 899373,
+    "examType": 1,
+    "examDate": "2025-11-28T00:00:00",
+    "endEditTime": "2025-11-28T23:59:00",
+    "endInnerEditTime": "2025-11-28T23:59:00"
+  }
+]

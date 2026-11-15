@@ -1,0 +1,145 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  .fx { direction: rtl; text-align: right; font-family: 'Assistant', system-ui, sans-serif; }
+  .fx h2, .fx h3, .fx p { text-align: right; }
+  .fx .card { cursor: default; }
+  .fx .card:hover { transform: none; }
+  .fx .card-image { aspect-ratio: auto !important; padding: 18px 10px; background: #EEF1F7 !important; }
+  .fx .card-body p { line-height: 1.5; }
+  .fx .chosen { background: #F6F8FC; border: 1px solid #D6E0EE; border-radius: 10px; padding: 10px 14px; margin: 0 0 1.4rem; font-size: .9rem; line-height: 1.6; }
+
+  .ph { width: 270px; height: 540px; background: #fff; border: 1px solid #C9D2E3; border-radius: 26px; overflow: hidden; position: relative;
+        display: flex; flex-direction: column; color: #1A2347; font-family: 'Assistant', system-ui, sans-serif; direction: rtl; box-shadow: 0 6px 18px rgba(26,35,71,.10); }
+  .ph * { box-sizing: border-box; }
+  .ph .body { flex: 1; overflow: hidden; }
+  .ph .hdr { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 16px 6px; }
+  .ph .hdr .t { font-size: 24px; font-weight: 800; line-height: 1.05; }
+  .ph .hdr .s { font-size: 12px; color: #4A5472; margin-top: 3px; }
+  .ph .chip { font-size: 11px; font-weight: 600; border: 1px solid #D6E0EE; border-radius: 8px; padding: 2px 8px; color: #4A5472; }
+  .ph .ftabs { display: flex; justify-content: space-around; border-top: 1px solid #D6E0EE; padding: 9px 4px 11px; font-size: 12.5px; color: #4A5472; }
+  .ph .ftabs .on { color: #1A2347; font-weight: 800; background: rgba(255,214,0,.55); border-radius: 8px; padding: 0 10px; }
+  .ph .lead { padding: 4px 16px 10px; font-size: 13px; line-height: 1.6; }
+  .ph .lead b { font-weight: 800; }
+  .ph .lbl { padding: 10px 16px 4px; font-size: 11.5px; font-weight: 700; color: #4A5472; }
+  .ph .ab { display: flex; align-items: center; border-top: 1px solid #D6E0EE; padding: 8px 0; }
+  .ph .ab .sub { width: 76px; flex: none; padding: 0 12px 0 6px; font-weight: 700; font-size: 13.5px; border-left: 1.5px solid rgba(232,80,91,.55); align-self: stretch; display: flex; align-items: center; }
+  .ph .ab .who { flex: 1; padding: 0 10px; }
+  .ph .bar { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #4A5472; height: 18px; }
+  .ph .bar .nm { width: 30px; flex: none; }
+  .ph .bar .tr { flex: 1; height: 7px; background: #EEF1F7; border-radius: 4px; overflow: hidden; display: flex; }
+  .ph .bar .tr i { display: block; height: 100%; background: #2347C5; border-radius: 4px; }
+  .ph .bar .tr i.close { background: #C46A00; }
+  .ph .bar .v { width: 30px; flex: none; text-align: left; font-weight: 700; color: #1A2347; direction: ltr; }
+  .ph .note { margin: 10px 16px; font-size: 11.5px; color: #4A5472; line-height: 1.5; }
+  .ph .ex { display: flex; border-top: 1px solid #D6E0EE; min-height: 52px; }
+  .ph .ex .d { width: 58px; flex: none; border-left: 1.5px solid rgba(232,80,91,.55); padding: 8px 8px 0 0; font-size: 12px; font-weight: 700; color: #2347C5; }
+  .ph .ex .d small { display: block; color: #5A6482; font-weight: 400; }
+  .ph .ex .c { flex: 1; padding: 8px 12px; font-size: 14px; font-weight: 700; }
+  .ph .ex .c small { display: block; font-size: 12px; font-weight: 400; color: #4A5472; }
+  .ph .ex .tag { align-self: center; margin-inline-end: 10px; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 6px; }
+  .ph .tag.both { background: rgba(255,210,0,.45); color: #5E4A00; }
+  .ph .tag.them { border: 1px solid #D6E0EE; color: #4A5472; font-weight: 600; }
+  .ph .tag.me { border: 1px solid #D6E0EE; color: #4A5472; font-weight: 600; }
+
+  /* approval sheet */
+  .ph .dim { position: absolute; inset: 0; background: rgba(15,22,54,.38); }
+  .ph .sheet { position: absolute; inset: auto 0 0 0; background: #fff; border-radius: 18px 18px 0 0; padding: 10px 16px 16px; }
+  .ph .grab { width: 36px; height: 4px; border-radius: 2px; background: #C9D2E3; margin: 0 auto 10px; }
+  .ph .sheet .st { font-size: 19px; font-weight: 800; line-height: 1.2; }
+  .ph .sheet .ss { font-size: 12.5px; color: #4A5472; margin: 4px 0 10px; line-height: 1.5; }
+  .ph .tg { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #E5EBF4; padding: 9px 0; font-size: 13.5px; }
+  .ph .tg small { display: block; font-size: 11.5px; color: #4A5472; }
+  .ph .sw { width: 34px; height: 20px; border-radius: 10px; background: #2347C5; position: relative; flex: none; }
+  .ph .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+  .ph .sw.off { background: #C9D2E3; }
+  .ph .sw.off::after { left: auto; right: 3px; }
+  .ph .namef { border: 1.5px solid #D6E0EE; border-radius: 8px; padding: 5px 10px; font-size: 14px; font-weight: 700; width: 110px; }
+  .ph .btn { margin-top: 12px; background: #2347C5; color: #fff; text-align: center; border-radius: 10px; padding: 10px; font-weight: 800; font-size: 14.5px; }
+  .ph .btn2 { text-align: center; color: #2347C5; font-weight: 700; font-size: 13.5px; padding: 9px 0 0; }
+  .ph .lock { font-size: 11px; color: #4A5472; margin-top: 8px; line-height: 1.45; }
+</style>
+
+<div class="fx">
+<h2>חברים: איך מוסיפים, חיסורים ומבחנים</h2>
+<div class="chosen"><b>מה כבר נבחר:</b> כפתור חברים ליד הפעמון, ושורה ב״היום״ כשיש משהו משותף. כשנכנסים לחבר, הוא נפתח על היום בשני טורים, ובחירת יום עוברת על השבוע.</div>
+<p class="subtitle">שלוש סקיצות נוספות. אלה לא אפשרויות לבחירה אלא הצעה אחת. אפשר לכתוב בצ׳אט מה לא נכון או מה חסר.</p>
+
+<div class="cards">
+
+  <div class="card">
+    <div class="card-image">
+      <div class="ph">
+        <div class="body">
+          <div class="hdr"><div><div class="t">יום שני</div><div class="s">2.11.2026</div></div></div>
+        </div>
+        <div class="dim"></div>
+        <div class="sheet">
+          <div class="grab"></div>
+          <div class="st">פלג רוצה להיות חברים בסדר יום</div>
+          <div class="ss">ככה תראו מתי מתחילים ומסיימים יחד, ומתי יש לכם חלון משותף.</div>
+          <div class="tg"><span>השם שלך אצל פלג</span><span class="namef">נועה</span></div>
+          <div class="tg"><span>המערכת והמבחנים שלך<small>כולל השינויים של היום</small></span><span class="sw"></span></div>
+          <div class="tg"><span>החיסורים שלך<small>לכל מקצוע, כמה עוד מותר</small></span><span class="sw"></span></div>
+          <div class="btn">להיות חברים</div>
+          <div class="btn2">לא עכשיו</div>
+          <div class="lock">השיתוף מפלג: מערכת וחיסורים. אפשר לשנות את זה או להפסיק בכל רגע. מה שמשתפים עובר מוצפן, ורק פלג יכול לקרוא אותו.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>הוספת חבר</h3>
+      <p>מסך החברים ← ״להוסיף חבר״ ← בוחרים מה החבר יראה ממך, ושולחים קישור בוואטסאפ. כשהחבר פותח את הקישור הוא רואה את החלון הזה: מה הוא משתף איתך, ובאיזה שם יופיע אצלך. השם ימולא מראש מהשם במשוב. ציונים יתווספו לכאן בהמשך.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-image">
+      <div class="ph">
+        <div class="body">
+          <div class="hdr"><div><div class="t">נועה</div><div class="s">חיסורים במחצית א׳</div></div><div><span class="chip">מה משותף</span></div></div>
+          <div class="lead">במקצועות שלומדים ביחד</div>
+          <div class="ab"><div class="sub">מתמטיקה</div><div class="who">
+            <div class="bar"><span class="nm">שלך</span><span class="tr"><i style="width:33%"></i></span><span class="v">2/6</span></div>
+            <div class="bar"><span class="nm">נועה</span><span class="tr"><i class="close" style="width:67%"></i></span><span class="v">4/6</span></div>
+          </div></div>
+          <div class="ab"><div class="sub">אנגלית</div><div class="who">
+            <div class="bar"><span class="nm">שלך</span><span class="tr"><i style="width:20%"></i></span><span class="v">1/5</span></div>
+            <div class="bar"><span class="nm">נועה</span><span class="tr"><i style="width:0%"></i></span><span class="v">0/5</span></div>
+          </div></div>
+          <div class="lbl">שאר המקצועות של נועה</div>
+          <div class="ab"><div class="sub">כימיה</div><div class="who"><div class="bar"><span class="nm">נועה</span><span class="tr"><i style="width:25%"></i></span><span class="v">1/4</span></div></div></div>
+          <div class="ab"><div class="sub">היסטוריה</div><div class="who"><div class="bar"><span class="nm">נועה</span><span class="tr"><i style="width:0%"></i></span><span class="v">0/3</span></div></div></div>
+          <div class="note">2/6: שני חיסורים שנחשבים, מתוך שישה שמותר עד סוף המחצית. כתום: נשארו שניים או פחות. עודכן אצל נועה לפני 20 דקות.</div>
+        </div>
+        <div class="ftabs"><span>מערכת</span><span>מבחנים</span><span class="on">חיסורים</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>חיסורים זה לצד זה</h3>
+      <p>אותו חישוב שמסך החיסורים כבר עושה: חיסורים לא מוצדקים, וכל כמה איחורים נחשבים כחיסור. קודם המקצועות שלומדים ביחד, אחר כך שאר המקצועות של החבר. רואים מתי זה עודכן אצלו לאחרונה. אין דירוג בין חברים.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-image">
+      <div class="ph">
+        <div class="body">
+          <div class="hdr"><div><div class="t">נועה</div><div class="s">מבחנים בשבועיים הקרובים</div></div><div><span class="chip">מה משותף</span></div></div>
+          <div class="lead"><b>מבחן אחד משותף</b>, בעוד שלושה ימים</div>
+          <div class="ex"><div class="d">ה׳<small>5.11</small></div><div class="c">מתמטיקה<small>לשניכם, באותו יום</small></div><span class="tag both">ביחד</span></div>
+          <div class="ex"><div class="d">א׳<small>8.11</small></div><div class="c">כימיה<small>רק לנועה</small></div><span class="tag them">נועה</span></div>
+          <div class="ex"><div class="d">ג׳<small>10.11</small></div><div class="c">ספרות<small>רק לך</small></div><span class="tag me">לך</span></div>
+          <div class="ex"><div class="d">ד׳<small>11.11</small></div><div class="c">אנגלית<small>לשניכם, נועה ביום ה׳ 12.11</small></div><span class="tag both">אותו מקצוע</span></div>
+          <div class="note">במסך החברים, ליד כל מבחן שלך יופיע מי עוד נבחן בו: ״גם נועה ויואב״.</div>
+        </div>
+        <div class="ftabs"><span>מערכת</span><span class="on">מבחנים</span><span>חיסורים</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>מבחנים משותפים</h3>
+      <p>המבחנים שלך והמבחנים של החבר בשבועיים הקרובים, ברשימה אחת. ״ביחד״ כשזה אותו מקצוע באותו יום. ״אותו מקצוע״ כשזה אותו מקצוע בשבוע הזה, אבל ביום אחר. המטרה היא ללמוד יחד.</p>
+    </div>
+  </div>
+</div>
+</div>

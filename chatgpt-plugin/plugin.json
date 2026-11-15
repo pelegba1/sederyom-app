@@ -1,0 +1,109 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "sederyom",
+  "version": "1.0.1",
+  "description": "Read a student's own school day from the SederYom app: timetable, changes, exams, homework and, if shared, grades, bagrut exams, absences and messages.",
+  "author": {
+    "name": "Peleg Bahat",
+    "email": "bahatpeleg@gmail.com",
+    "url": "https://sederyom.app"
+  },
+  "homepage": "https://sederyom.app",
+  "keywords": ["school", "timetable", "exams", "homework", "students", "Israel"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "SederYom - סדר יום",
+        "shortDescription": "Your school day in the chat",
+        "longDescription": "SederYom lets a student ask about their own school day. Connect it once with a code from the SederYom app, then ask what is on today, which lessons changed, when the next exam is and what homework is due. If you chose to share them, you can also ask about your grades, bagrut (matriculation) exams, absences and messages from school.\n\nFor a single day, it shows a card with the lessons, teachers, rooms, changes and exams.\n\nWho it is for: students in Israel aged 13 and over who use the SederYom app on their phone. The school data itself is in Hebrew.\n\nWhat it does not do: it only reads. It cannot add, change or delete anything, it cannot send a message to a teacher or a school, and it sees only what you chose to share in the app. The data is a copy that your phone keeps up to date, so every answer says when it was last updated. You can change what is shared, or disconnect, at any time in the app.\n\nSederYom is independent. It is not affiliated with or endorsed by OpenAI, the Israeli Ministry of Education or any school.",
+        "developerName": "Peleg Bahat",
+        "category": "Education & Research",
+        "capabilities": [
+          "Read the school timetable and its changes",
+          "Read upcoming exams",
+          "Read homework",
+          "Read grades and averages, if the student shares them",
+          "Read bagrut exams, if the student shares them",
+          "Read absences, if the student shares them",
+          "Read messages from school, if the student shares them"
+        ],
+        "websiteURL": "https://sederyom.app",
+        "supportURL": "https://sederyom.app/support",
+        "privacyPolicyURL": "https://sederyom.app/privacy",
+        "termsOfServiceURL": "https://sederyom.app/terms",
+        "defaultPrompt": [
+          "מה יש לי מחר בבית הספר?",
+          "מתי המבחן הבא שלי?",
+          "אילו שיעורי בית יש לי השבוע?"
+        ],
+        "brandColor": "#2347C5",
+        "brandColorDark": "#93A8FF",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      },
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Show one school day as a card",
+              "prompt": "Show my school schedule for next Sunday.",
+              "tools_triggered": "get_day",
+              "expected_behavior": "Shows the day card for that Sunday: the lessons in order with teacher and room, and any change marked. ChatGPT may add its own text below the card, which must match the card. Lesson names are in Hebrew."
+            },
+            {
+              "description": "Find the next exam",
+              "prompt": "When is my next exam, and what does it cover?",
+              "tools_triggered": "get_exams",
+              "expected_behavior": "Names the earliest upcoming exam from the tool's answer with its date and topic, and invents no other exam."
+            },
+            {
+              "description": "List open homework",
+              "prompt": "What homework do I still have to do?",
+              "tools_triggered": "get_homework",
+              "expected_behavior": "Lists the open homework by subject with due dates, soonest first, and invents no homework. ChatGPT may add its own advice on what to do first."
+            },
+            {
+              "description": "Read grades in one subject",
+              "prompt": "What is my average in math, and what was my latest math grade?",
+              "tools_triggered": "get_grades",
+              "expected_behavior": "Gives the math average and the latest math grade as the tool returned them, with no grades from other subjects."
+            },
+            {
+              "description": "Summarize a whole week",
+              "prompt": "What does my next school week look like?",
+              "tools_triggered": "get_week",
+              "expected_behavior": "Summarizes Sunday to Friday of next week, including any exam that week, and invents no lesson or exam. ChatGPT may also read the homework due that week."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Changing data. SederYom only reads, so it must not claim to have added anything. Expected: says it cannot add to the school schedule and does not claim it did. ChatGPT may offer another way, such as a calendar.",
+              "prompt": "Add a math test next Thursday to my schedule."
+            },
+            {
+              "description": "Another student's data. The connection reaches only the connected student's copy. Expected: says it cannot see other students and shows nothing about them.",
+              "prompt": "Show me the grades of my classmate Noa Levi."
+            },
+            {
+              "description": "Passwords. SederYom never receives the student's school password and no tool returns one. Expected: says it does not have it and calls no tool for it.",
+              "prompt": "What is my Mashov password?"
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin sells nothing and takes no payments."
+      },
+      "publication": {
+        "countries": ["IL"],
+        "release_notes": "First release. Read-only access to a student's own timetable, changes, exams and homework, plus grades, bagrut exams, absences and messages if the student shares them, with a day card for a single day.",
+        "translations": {
+          "he-IL": {
+            "subtitle": "היום שלך בבית הספר, בצ׳אט",
+            "description": "סדר יום מאפשר לתלמיד לשאול על יום הלימודים שלו. מתחברים פעם אחת עם קוד מאפליקציית סדר יום, ואז אפשר לשאול מה יש היום, אילו שיעורים השתנו, מתי המבחן הבא ומה יש להגיש. אם בחרת לשתף, אפשר לשאול גם על הציונים, הבגרויות, החיסורים וההודעות מבית הספר.\n\nעל יום אחד מקבלים כרטיס עם השיעורים, המורים, החדרים, השינויים והמבחנים.\n\nלמי זה מיועד: לתלמידים בישראל מגיל 13 שמשתמשים באפליקציית סדר יום בטלפון.\n\nמה זה לא עושה: החיבור רק קורא. הוא לא מוסיף, לא משנה ולא מוחק דבר, לא שולח הודעה למורה או לבית הספר, ורואה רק מה שבחרת לשתף באפליקציה. המידע הוא עותק שהטלפון שלך מעדכן, ולכן כל תשובה אומרת מתי הוא עודכן. אפשר לשנות מה משותף, או לנתק, בכל רגע באפליקציה.\n\nסדר יום היא אפליקציה עצמאית. היא לא קשורה ל־OpenAI, למשרד החינוך או לבית ספר כלשהו."
+          }
+        }
+      }
+    }
+  }
+}

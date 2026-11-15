@@ -1,0 +1,13 @@
+[
+  { "lessonNumber": 1,  "startTime": "08:00:00", "endTime": "08:45:00" },
+  { "lessonNumber": 2,  "startTime": "08:45:00", "endTime": "09:30:00" },
+  { "lessonNumber": 3,  "startTime": "09:45:00", "endTime": "10:30:00" },
+  { "lessonNumber": 4,  "startTime": "10:30:00", "endTime": "11:15:00" },
+  { "lessonNumber": 5,  "startTime": "11:30:00", "endTime": "12:15:00" },
+  { "lessonNumber": 6,  "startTime": "12:15:00", "endTime": "13:00:00" },
+  { "lessonNumber": 7,  "startTime": "13:25:00", "endTime": "14:10:00" },
+  { "lessonNumber": 8,  "startTime": "14:10:00", "endTime": "14:55:00" },
+  { "lessonNumber": 9,  "startTime": "15:00:00", "endTime": "15:45:00" },
+  { "lessonNumber": 10, "startTime": "15:45:00", "endTime": "16:30:00" },
+  { "lessonNumber": 11, "startTime": "16:30:00", "endTime": "17:15:00" }
+]

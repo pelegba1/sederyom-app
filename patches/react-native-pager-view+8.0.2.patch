@@ -1,0 +1,58 @@
+diff --git a/node_modules/react-native-pager-view/ios/PagerScrollDelegate.swift b/node_modules/react-native-pager-view/ios/PagerScrollDelegate.swift
+index 5b09e03..893a203 100644
+--- a/node_modules/react-native-pager-view/ios/PagerScrollDelegate.swift
++++ b/node_modules/react-native-pager-view/ios/PagerScrollDelegate.swift
+@@ -7,6 +7,8 @@ class PagerScrollDelegate: NSObject, UIScrollViewDelegate, UICollectionViewDeleg
+   weak var originalDelegate: UICollectionViewDelegate?
+   weak var delegate: PagerViewProviderDelegate?
+   var orientation: UICollectionView.ScrollDirection = .horizontal
++  /// The pager's props, for its layout direction (SederYom patch).
++  weak var props: PagerViewProps?
+   
+   private let handledSelectors: Set<Selector> = [
+     #selector(scrollViewDidScroll(_:)),
+@@ -19,10 +21,22 @@ class PagerScrollDelegate: NSObject, UIScrollViewDelegate, UICollectionViewDeleg
+     #selector(collectionView(_:willDisplay:forItemAt:))
+   ]
+   
++  /// The scroll offset counted from page 0 (SederYom patch). A right-to-left
++  /// TabView lays page 0 at the right, but contentOffset is physical, from the
++  /// left: page i of n reported as n - 1 - i, so a tab bar that follows the
++  /// pager highlighted the mirrored tab (iPhone, 2026-11-04: on משימות, the bar
++  /// showed שבוע). onPageSelected was right: it reads the selection.
++  private func logicalOffset(_ scrollView: UIScrollView, pageSize: CGFloat) -> CGFloat {
++    guard orientation == .horizontal else { return scrollView.contentOffset.y }
++    let physical = scrollView.contentOffset.x
++    guard props?.layoutDirection == .rtl, pageSize > 0 else { return physical }
++    return max(0, scrollView.contentSize.width - pageSize - physical)
++  }
++
+   func scrollViewDidScroll(_ scrollView: UIScrollView) {
+     let isHorizontal = orientation == .horizontal
+     let pageSize = isHorizontal ? scrollView.frame.width : scrollView.frame.height
+-    let contentOffset = isHorizontal ? scrollView.contentOffset.x : scrollView.contentOffset.y
++    let contentOffset = logicalOffset(scrollView, pageSize: pageSize)
+     
+     guard pageSize > 0 else { return }
+     
+@@ -39,7 +53,7 @@ class PagerScrollDelegate: NSObject, UIScrollViewDelegate, UICollectionViewDeleg
+   private func emitIdleWithCleanOffset(_ scrollView: UIScrollView) {
+     let isHorizontal = orientation == .horizontal
+     let pageSize = isHorizontal ? scrollView.frame.width : scrollView.frame.height
+-    let contentOffset = isHorizontal ? scrollView.contentOffset.x : scrollView.contentOffset.y
++    let contentOffset = logicalOffset(scrollView, pageSize: pageSize)
+ 
+     if pageSize > 0 {
+       let page = Int(round(contentOffset / pageSize))
+diff --git a/node_modules/react-native-pager-view/ios/PagerView.swift b/node_modules/react-native-pager-view/ios/PagerView.swift
+index 7b296a0..8f97361 100644
+--- a/node_modules/react-native-pager-view/ios/PagerView.swift
++++ b/node_modules/react-native-pager-view/ios/PagerView.swift
+@@ -33,6 +33,7 @@ struct PagerView: View {
+         layout.scrollDirection = props.orientation
+       }
+ 
++      scrollDelegate.props = props
+       if scrollDelegate.originalDelegate == nil {
+         scrollDelegate.originalDelegate = collectionView.delegate
+         scrollDelegate.delegate = delegate

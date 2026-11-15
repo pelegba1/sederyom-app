@@ -1,0 +1,128 @@
+[
+  {
+    "justification": "ללא הערות",
+    "hidden": false,
+    "justificationId": -1,
+    "displayOrder": -1
+  },
+  {
+    "justification": "לא מוצדק",
+    "hidden": false,
+    "justificationId": 0,
+    "displayOrder": 0
+  },
+  {
+    "justification": "אישור רפואי",
+    "hidden": false,
+    "justificationId": 1,
+    "displayOrder": 2
+  },
+  {
+    "justification": "לשכת גיוס",
+    "hidden": false,
+    "justificationId": 2,
+    "displayOrder": 3
+  },
+  {
+    "justification": "טסט \\ תיאוריה",
+    "hidden": false,
+    "justificationId": 3,
+    "displayOrder": 4
+  },
+  {
+    "justification": "פעילות בית ספרית",
+    "hidden": false,
+    "justificationId": 4,
+    "displayOrder": 5
+  },
+  {
+    "justification": "אישור בעל תפקיד",
+    "hidden": false,
+    "justificationId": 5,
+    "displayOrder": 1
+  },
+  {
+    "justification": "אישור הורים",
+    "hidden": true,
+    "justificationId": 6,
+    "displayOrder": 6
+  },
+  {
+    "justification": "נבחרת בית ספר",
+    "hidden": false,
+    "justificationId": 7,
+    "displayOrder": 7
+  },
+  {
+    "justification": "אינו מתפקד בשיעור",
+    "hidden": true,
+    "justificationId": 8,
+    "displayOrder": 8
+  },
+  {
+    "justification": "סיור מקצועי",
+    "hidden": true,
+    "justificationId": 9,
+    "displayOrder": 9
+  },
+  {
+    "justification": "מנהיגות",
+    "hidden": false,
+    "justificationId": 10,
+    "displayOrder": 10
+  },
+  {
+    "justification": "חופשת מתכונת",
+    "hidden": true,
+    "justificationId": 11,
+    "displayOrder": 11
+  },
+  {
+    "justification": "נבחן במועד ב''",
+    "hidden": true,
+    "justificationId": 12,
+    "displayOrder": 12
+  },
+  {
+    "justification": "נבחן במתכונת",
+    "hidden": true,
+    "justificationId": 13,
+    "displayOrder": 13
+  },
+  {
+    "justification": "חופשת מתכונת/בגרות",
+    "hidden": false,
+    "justificationId": 14,
+    "displayOrder": 15
+  },
+  {
+    "justification": "מתכונת/בגרות",
+    "hidden": false,
+    "justificationId": 15,
+    "displayOrder": 16
+  },
+  {
+    "justification": "מועד ב",
+    "hidden": false,
+    "justificationId": 16,
+    "displayOrder": 17
+  },
+  {
+    "justification": "פרטני",
+    "hidden": false,
+    "justificationId": 17,
+    "displayOrder": 19
+  },
+  {
+    "justification": "בידוד",
+    "hidden": false,
+    "justificationId": 18,
+    "displayOrder": 18
+  },
+  {
+    "justification": "תכניות מיוחדות/אקדמיה בתיכון",
+    "hidden": false,
+    "justificationId": 19,
+    "displayOrder": 14
+  }
+]

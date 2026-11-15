@@ -1,0 +1,548 @@
+[
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000002",
+    "subject": "הודעה 1",
+    "sendTime": "2026-10-08T12:27:32",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000002",
+        "conversationId": "00000000-0000-4000-8000-000000000002",
+        "senderId": "00000000-0000-4000-8000-000000000003",
+        "senderName": "מורה 1",
+        "subject": "הודעה 1",
+        "lastUpdate": "2026-10-08T12:27:32",
+        "sendTime": "2026-10-08T12:27:32",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": false
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000004",
+    "subject": "הודעה 2",
+    "sendTime": "2026-10-04T12:28:25",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": false,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000005",
+        "conversationId": "00000000-0000-4000-8000-000000000004",
+        "senderId": "00000000-0000-4000-8000-000000000003",
+        "senderName": "מורה 1",
+        "subject": "הודעה 2",
+        "lastUpdate": "2026-10-04T12:28:25",
+        "sendTime": "2026-10-04T12:28:25",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      },
+      {
+        "messageId": "00000000-0000-4000-8000-000000000004",
+        "conversationId": "00000000-0000-4000-8000-000000000004",
+        "senderId": "00000000-0000-4000-8000-000000000003",
+        "senderName": "מורה 1",
+        "subject": "הודעה 2",
+        "lastUpdate": "2026-09-17T14:21:14",
+        "sendTime": "2026-09-17T14:21:14",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": false
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000006",
+    "subject": "הודעה 3",
+    "sendTime": "2026-10-02T12:00:00",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": false,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000006",
+        "conversationId": "00000000-0000-4000-8000-000000000006",
+        "senderId": "00000000-0000-4000-8000-000000000007",
+        "senderName": "מורה 2",
+        "subject": "הודעה 3",
+        "lastUpdate": "2026-10-01T18:59:38",
+        "sendTime": "2026-10-02T12:00:00",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000008",
+    "subject": "הודעה 4",
+    "sendTime": "2026-09-16T12:05:10",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": false,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000008",
+        "conversationId": "00000000-0000-4000-8000-000000000008",
+        "senderId": "00000000-0000-4000-8000-000000000009",
+        "senderName": "מורה 3",
+        "subject": "הודעה 4",
+        "lastUpdate": "2026-09-16T12:05:10",
+        "sendTime": "2026-09-16T12:05:10",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": false
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000010",
+    "subject": "הודעה 5",
+    "sendTime": "2026-09-15T15:18:42",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000010",
+        "conversationId": "00000000-0000-4000-8000-000000000010",
+        "senderId": "00000000-0000-4000-8000-000000000011",
+        "senderName": "מורה 4",
+        "subject": "הודעה 5",
+        "lastUpdate": "2026-09-15T15:18:41",
+        "sendTime": "2026-09-15T15:18:42",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000012",
+    "subject": "הודעה 6",
+    "sendTime": "2026-09-15T15:02:35",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000012",
+        "conversationId": "00000000-0000-4000-8000-000000000012",
+        "senderId": "00000000-0000-4000-8000-000000000011",
+        "senderName": "מורה 4",
+        "subject": "הודעה 6",
+        "lastUpdate": "2026-09-15T15:02:34",
+        "sendTime": "2026-09-15T15:02:35",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000013",
+    "subject": "הודעה 7",
+    "sendTime": "2026-09-15T11:27:35",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000013",
+        "conversationId": "00000000-0000-4000-8000-000000000013",
+        "senderId": "00000000-0000-4000-8000-000000000011",
+        "senderName": "מורה 4",
+        "subject": "הודעה 7",
+        "lastUpdate": "2026-09-15T11:27:35",
+        "sendTime": "2026-09-15T11:27:35",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000014",
+    "subject": "הודעה 8",
+    "sendTime": "2026-09-09T16:02:20",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": false,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000014",
+        "conversationId": "00000000-0000-4000-8000-000000000014",
+        "senderId": "00000000-0000-4000-8000-000000000015",
+        "senderName": "מורה 5",
+        "subject": "הודעה 8",
+        "lastUpdate": "2026-09-09T16:02:20",
+        "sendTime": "2026-09-09T16:02:20",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": false
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000016",
+    "subject": "הודעה 9",
+    "sendTime": "2026-09-06T11:02:42",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000016",
+        "conversationId": "00000000-0000-4000-8000-000000000016",
+        "senderId": "00000000-0000-4000-8000-000000000011",
+        "senderName": "מורה 4",
+        "subject": "הודעה 9",
+        "lastUpdate": "2026-09-06T11:02:42",
+        "sendTime": "2026-09-06T11:02:42",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000017",
+    "subject": "הודעה 10",
+    "sendTime": "2026-09-03T10:27:14",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": false,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000017",
+        "conversationId": "00000000-0000-4000-8000-000000000017",
+        "senderId": "00000000-0000-4000-8000-000000000018",
+        "senderName": "מורה 6",
+        "subject": "הודעה 10",
+        "lastUpdate": "2026-09-03T10:27:14",
+        "sendTime": "2026-09-03T10:27:14",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": false
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000019",
+    "subject": "הודעה 11",
+    "sendTime": "2026-09-02T07:03:00",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000020",
+        "conversationId": "00000000-0000-4000-8000-000000000019",
+        "senderId": "00000000-0000-4000-8000-000000000009",
+        "senderName": "מורה 3",
+        "subject": "הודעה 11",
+        "lastUpdate": "2026-09-02T07:03:00",
+        "sendTime": "2026-09-02T07:03:00",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      },
+      {
+        "messageId": "00000000-0000-4000-8000-000000000019",
+        "conversationId": "00000000-0000-4000-8000-000000000019",
+        "senderId": "00000000-0000-4000-8000-000000000001",
+        "senderName": "מורה 7",
+        "subject": "הודעה 11",
+        "lastUpdate": "2026-09-01T22:53:56",
+        "sendTime": "2026-09-01T22:53:56",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": false
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000021",
+    "subject": "הודעה 12",
+    "sendTime": "2026-09-01T14:54:12",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": false,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000021",
+        "conversationId": "00000000-0000-4000-8000-000000000021",
+        "senderId": "00000000-0000-4000-8000-000000000011",
+        "senderName": "מורה 4",
+        "subject": "הודעה 12",
+        "lastUpdate": "2026-09-01T14:54:12",
+        "sendTime": "2026-09-01T14:54:12",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000022",
+    "subject": "הודעה 13",
+    "sendTime": "2026-08-30T14:07:31",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": false,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000022",
+        "conversationId": "00000000-0000-4000-8000-000000000022",
+        "senderId": "00000000-0000-4000-8000-000000000011",
+        "senderName": "מורה 4",
+        "subject": "הודעה 13",
+        "lastUpdate": "2026-08-30T14:07:31",
+        "sendTime": "2026-08-30T14:07:31",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": false,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": false
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000023",
+    "subject": "הודעה 14",
+    "sendTime": "2026-08-26T13:09:19",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000023",
+        "conversationId": "00000000-0000-4000-8000-000000000023",
+        "senderId": "00000000-0000-4000-8000-000000000007",
+        "senderName": "מורה 2",
+        "subject": "הודעה 14",
+        "lastUpdate": "2026-08-26T13:09:18",
+        "sendTime": "2026-08-26T13:09:19",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000024",
+    "subject": "הודעה 15",
+    "sendTime": "2026-08-25T18:05:31",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000024",
+        "conversationId": "00000000-0000-4000-8000-000000000024",
+        "senderId": "00000000-0000-4000-8000-000000000011",
+        "senderName": "מורה 4",
+        "subject": "הודעה 15",
+        "lastUpdate": "2026-08-25T18:05:31",
+        "sendTime": "2026-08-25T18:05:31",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000025",
+    "subject": "הודעה 16",
+    "sendTime": "2026-08-24T11:21:20",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": true,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000025",
+        "conversationId": "00000000-0000-4000-8000-000000000025",
+        "senderId": "00000000-0000-4000-8000-000000000007",
+        "senderName": "מורה 2",
+        "subject": "הודעה 16",
+        "lastUpdate": "2026-08-24T11:21:20",
+        "sendTime": "2026-08-24T11:21:20",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  },
+  {
+    "conversationId": "00000000-0000-4000-8000-000000000026",
+    "subject": "הודעה 17",
+    "sendTime": "2026-08-19T11:17:29",
+    "isNew": false,
+    "hasDrafts": false,
+    "hasAttachments": false,
+    "messages": [
+      {
+        "messageId": "00000000-0000-4000-8000-000000000026",
+        "conversationId": "00000000-0000-4000-8000-000000000026",
+        "senderId": "00000000-0000-4000-8000-000000000011",
+        "senderName": "מורה 4",
+        "subject": "הודעה 17",
+        "lastUpdate": "2026-08-19T11:17:28",
+        "sendTime": "2026-08-19T11:17:29",
+        "folder": 0,
+        "isNew": false,
+        "isDeleted": false,
+        "sendOnBehalf": false,
+        "sendViaEmail": false,
+        "sendViaSms": false,
+        "preventReply": true,
+        "sentViaEmail": false,
+        "sentViaSms": false
+      }
+    ],
+    "labels": [],
+    "preventReply": true
+  }
+]

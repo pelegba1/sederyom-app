@@ -1,0 +1,167 @@
+{
+  "expo": {
+    "name": "סדר יום",
+    "slug": "sederyom",
+    "version": "2.1.0",
+    "orientation": "portrait",
+    "scheme": "sederyom",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "backgroundColor": "#FFFFFF",
+    "ios": {
+      "bundleIdentifier": "site.sederyom.app",
+      "buildNumber": "12",
+      "supportsTablet": false,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "site.sederyom.app",
+      "versionCode": 40,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "monochromeImage": "./assets/adaptive-monochrome.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "permissions": [
+        "POST_NOTIFICATIONS",
+        "RECEIVE_BOOT_COMPLETED"
+      ],
+      "blockedPermissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      "expo-dev-client",
+      "expo-background-task",
+      [
+        "expo-localization",
+        {
+          "supportsRTL": true,
+          "forcesRTL": true
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#2347C5",
+          "defaultChannel": "default"
+        }
+      ],
+      [
+        "react-native-android-widget",
+        {
+          "widgets": [
+            {
+              "name": "Today",
+              "label": "מערכת",
+              "minWidth": "250dp",
+              "minHeight": "110dp",
+              "targetCellWidth": 4,
+              "targetCellHeight": 2,
+              "description": "המערכת של היום עם השינויים, ודפדוף לימים הבאים והקודמים",
+              "resizeMode": "horizontal|vertical",
+              "updatePeriodMillis": 1800000
+            },
+            {
+              "name": "TasksExams",
+              "label": "משימות",
+              "minWidth": "110dp",
+              "minHeight": "110dp",
+              "targetCellWidth": 2,
+              "targetCellHeight": 2,
+              "description": "שיעורי הבית להגשה והמשימות הפתוחות, קודם מה שבאיחור ומה שלהיום",
+              "resizeMode": "horizontal|vertical",
+              "updatePeriodMillis": 1800000
+            },
+            {
+              "name": "Overview",
+              "label": "סדר יום",
+              "minWidth": "250dp",
+              "minHeight": "180dp",
+              "targetCellWidth": 4,
+              "targetCellHeight": 3,
+              "description": "היום במבט אחד: מערכת, יומן, מבחנים ומשימות",
+              "resizeMode": "horizontal|vertical",
+              "updatePeriodMillis": 1800000
+            }
+          ]
+        }
+      ],
+      "./plugins/withWidgetPage",
+      [
+        "expo-widgets",
+        {
+          "bundleIdentifier": "site.sederyom.app.widgets",
+          "groupIdentifier": "group.site.sederyom.app",
+          "widgets": [
+            {
+              "name": "Today",
+              "displayName": "מערכת",
+              "description": "המערכת של היום עם השינויים, ודפדוף לימים הבאים והקודמים",
+              "supportedFamilies": [
+                "systemMedium"
+              ],
+              "contentMarginsDisabled": true
+            },
+            {
+              "name": "TasksExams",
+              "displayName": "משימות",
+              "description": "שיעורי הבית להגשה והמשימות הפתוחות, קודם מה שבאיחור ומה שלהיום",
+              "supportedFamilies": [
+                "systemSmall"
+              ],
+              "contentMarginsDisabled": true
+            },
+            {
+              "name": "Overview",
+              "displayName": "סדר יום",
+              "description": "היום במבט אחד: מערכת, יומן, מבחנים ומשימות",
+              "supportedFamilies": [
+                "systemLarge"
+              ],
+              "contentMarginsDisabled": true
+            }
+          ]
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 160,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF",
+          "dark": {
+            "image": "./assets/splash-icon-dark.png",
+            "backgroundColor": "#141829"
+          }
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.849104698901-v7a1a8v2dfeualr3hka5v8p96rke2328"
+        }
+      ],
+      "expo-status-bar"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "7be40cf9-8047-48a8-981c-47cada8eb4be"
+      },
+      "googleWebClientId": "849104698901-bpn9p1oomk5pk1nsfabp5jdgd9pkoddv.apps.googleusercontent.com",
+      "googleIosClientId": "849104698901-v7a1a8v2dfeualr3hka5v8p96rke2328.apps.googleusercontent.com"
+    },
+    "icon": "./assets/icon.png"
+  }
+}

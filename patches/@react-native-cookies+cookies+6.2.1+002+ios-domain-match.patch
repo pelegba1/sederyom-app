@@ -1,0 +1,35 @@
+diff --git a/node_modules/@react-native-cookies/cookies/ios/RNCookieManagerIOS/RNCookieManagerIOS.m b/node_modules/@react-native-cookies/cookies/ios/RNCookieManagerIOS/RNCookieManagerIOS.m
+index 0e76dba..b06477a 100644
+--- a/node_modules/@react-native-cookies/cookies/ios/RNCookieManagerIOS/RNCookieManagerIOS.m
++++ b/node_modules/@react-native-cookies/cookies/ios/RNCookieManagerIOS/RNCookieManagerIOS.m
+@@ -123,8 +123,7 @@ RCT_EXPORT_METHOD(
+                 [cookieStore getAllCookies:^(NSArray<NSHTTPCookie *> *allCookies) {
+                     NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
+                     for (NSHTTPCookie *cookie in allCookies) {
+-                        if ([topLevelDomain containsString:cookie.domain] ||
+-                            [cookie.domain isEqualToString: topLevelDomain]) {
++                        if ([self isMatchingDomain:topLevelDomain cookieDomain:cookie.domain]) {
+                             [cookies setObject:[self createCookieData:cookie] forKey:cookie.name];
+                         }
+                     }
+@@ -340,11 +339,16 @@ RCT_EXPORT_METHOD(
+ -(BOOL)isMatchingDomain:(NSString *)originDomain
+       cookieDomain:(NSString *)cookieDomain
+ {
+-    if ([originDomain isEqualToString: cookieDomain]) {
+-        return @YES;
++    // A cookie set with `Domain=.web.mashov.info` is stored as ".web.mashov.info":
++    // the leading dot goes before comparing, or the host itself never matches.
++    NSString *domain = [cookieDomain hasPrefix:@"."] ? [cookieDomain substringFromIndex:1] : cookieDomain;
++    if (isEmpty(originDomain) || isEmpty(domain)) {
++        return NO;
+     }
+-    NSString *parentDomain = [cookieDomain hasPrefix:@"."] ? cookieDomain : [@"." stringByAppendingString: cookieDomain];
+-    return [originDomain hasSuffix:parentDomain];
++    if ([originDomain caseInsensitiveCompare:domain] == NSOrderedSame) {
++        return YES;
++    }
++    return [[originDomain lowercaseString] hasSuffix:[@"." stringByAppendingString:[domain lowercaseString]]];
+ }
+ 
+ @end

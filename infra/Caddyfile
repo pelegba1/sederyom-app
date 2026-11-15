@@ -1,0 +1,13 @@
+# Automatic HTTPS for the single subdomain pointed at the VM (design-doc §2).
+{$SEDERYOM_DOMAIN} {
+	encode gzip
+
+	# Only the app talks to this API; there is no browser origin to allow.
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+
+	reverse_proxy api:3000
+}

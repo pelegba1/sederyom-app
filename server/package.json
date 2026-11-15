@@ -1,0 +1,45 @@
+{
+  "name": "@sederyom/server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:db": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:dev": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@hebcal/core": "^5.4.9",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@prisma/client": "^5.22.0",
+    "@sederyom/shared": "*",
+    "@vercel/functions": "^3.9.5",
+    "cheerio": "^1.0.0",
+    "expo-server-sdk": "^3.10.0",
+    "fastify": "^4.28.1",
+    "fflate": "^0.8.3",
+    "htmlparser2": "^10.1.0",
+    "luxon": "^3.5.0",
+    "node-cron": "^3.0.3",
+    "tweetnacl": "^1.0.3",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^22.9.0",
+    "@types/node-cron": "^3.0.11",
+    "prisma": "^5.22.0",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  }
+}

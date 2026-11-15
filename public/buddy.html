@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>להיות חברים בסדר יום</title>
+<meta property="og:title" content="להיות חברים בסדר יום">
+<meta property="og:description" content="לראות מתי מסיימים יחד ומתי יש חלון משותף.">
+<!--
+  The link of an invitation to be buddies in the app: /b#<secret>.
+  The secret is 32 random bytes in base64url (43 characters) and lives only in the fragment, which a
+  browser never sends to a server. On Android the button opens the app on sederyom://buddy?k=<secret>,
+  through Chrome's intent link; on an iPhone on that address itself.
+  Nothing here is sent anywhere: the page only builds two links, and the store link carries no
+  install referrer, because that would hand the secret to Google. After an install the person
+  taps the link again, and so does someone whose app is older than the invitations: it opens
+  without one, and is updated first.
+-->
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f7f5ef; --text: #1d2430; --muted: #5d6673; --accent: #24508f; --accent-text: #ffffff; --rule: #ddd8cc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0d1014; --text: #e6eaf0; --muted: #8b95a4; --accent: #5aa2d8; --accent-text: #0d1014; --rule: #1f2630; }
+  }
+  body {
+    background: var(--bg); color: var(--text); margin: 0; padding: 48px 16px 64px;
+    font: 17px/1.7 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 30rem; margin: 0 auto; }
+  h1 { font-size: 26px; line-height: 1.3; margin: 0 0 12px; }
+  p { margin: 0 0 14px; color: var(--muted); }
+  .actions { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+  a.button {
+    display: block; text-align: center; text-decoration: none; border-radius: 12px; padding: 14px 16px;
+    font-weight: 600; min-height: 24px;
+  }
+  a.primary { background: var(--accent); color: var(--accent-text); }
+  a.secondary { color: var(--accent); border: 1px solid var(--rule); }
+  .note { font-size: 15px; border-top: 1px solid var(--rule); padding-top: 16px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>להיות חברים בסדר יום</h1>
+  <p>קיבלת הזמנה להיות חברים בסדר יום, כדי לראות מתי מסיימים יחד ומתי יש חלון משותף.</p>
+  <p id="lead">הקישור הזה פותח את ההזמנה באפליקציה, ושם בוחרים אם לאשר אותה.</p>
+  <p id="bad" hidden>הקישור לא שלם. כדאי לבקש קישור חדש.</p>
+  <div class="actions">
+    <a id="open" class="button primary" href="#">לפתוח בסדר יום</a>
+    <a id="store" class="button secondary" rel="noreferrer" href="https://play.google.com/store/apps/details?id=site.sederyom.app">להוריד מ־Google Play</a>
+  </div>
+  <p class="note" id="installed">אחרי ההתקנה צריך ללחוץ שוב על הקישור. כך שום דבר מהקישור לא עובר דרך Google Play.</p>
+  <p class="note" id="update">אם סדר יום נפתחת ולא מופיעה הזמנה, צריך לעדכן אותה ב־Google Play ואז ללחוץ שוב על הקישור.</p>
+  <p class="note" id="iphone" hidden>באייפון סדר יום עדיין בהרצה, דרך TestFlight. אם היא כבר מותקנת אצלך, הכפתור פותח בה את ההזמנה. אם עוד לא, אחרי ההתקנה צריך ללחוץ שוב על הקישור.</p>
+  <p class="note" id="other" hidden>צריך לפתוח את הקישור הזה בטלפון שסדר יום מותקנת בו.</p>
+</main>
+<script>
+(function () {
+  var PACKAGE = 'site.sederyom.app';
+  // The secret: 32 bytes, base64url, no padding.
+  var match = /^#([A-Za-z0-9_-]{43})$/.exec(window.location.hash);
+  var open = document.getElementById('open');
+  if (match) {
+    // Chrome opens the app on its own scheme. No fallback address: the store button is the way to install.
+    open.href = 'intent://buddy?k=' + match[1] + '#Intent;scheme=sederyom;package=' + PACKAGE + ';end';
+  } else {
+    open.hidden = true;
+    document.getElementById('lead').hidden = true;
+    document.getElementById('installed').hidden = true;
+    document.getElementById('update').hidden = true;
+    document.getElementById('bad').hidden = false;
+  }
+  // An iPhone, or an iPad, which says it is a Mac with a touch screen: Safari opens the app on its own
+  // scheme when it is installed. There it is in testing, through TestFlight, so no store button.
+  var apple = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+  if (apple) {
+    document.getElementById('store').hidden = true;
+    document.getElementById('installed').hidden = true;
+    document.getElementById('update').hidden = true;
+    if (match) {
+      open.href = 'sederyom://buddy?k=' + match[1];
+      document.getElementById('iphone').hidden = false;
+    }
+  } else if (!/Android/i.test(navigator.userAgent)) {
+    open.hidden = true;
+    document.getElementById('installed').hidden = true;
+    document.getElementById('update').hidden = true;
+    document.getElementById('other').hidden = false;
+  }
+})();
+</script>
+</body>
+</html>

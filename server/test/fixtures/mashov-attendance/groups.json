@@ -1,0 +1,98 @@
+[
+  {
+    "groupId": 181,
+    "groupName": "שרותי רשת יב2",
+    "subjectName": "שרותי רשת",
+    "groupTeachers": [
+      {
+        "teacherGuid": "00000000-0000-0000-0000-0000000000aa",
+        "teacherName": "מורה"
+      }
+    ],
+    "groupInactiveTeachers": []
+  },
+  {
+    "groupId": 367,
+    "groupName": "אזרחות יב2",
+    "subjectName": "אזרחות",
+    "groupTeachers": [
+      {
+        "teacherGuid": "00000000-0000-0000-0000-0000000000aa",
+        "teacherName": "מורה"
+      }
+    ],
+    "groupInactiveTeachers": []
+  },
+  {
+    "groupId": 2882,
+    "groupName": "אנגלית 5 יח\"ל יב2-יב6",
+    "subjectName": "אנגלית 5 יח\"ל",
+    "groupTeachers": [
+      {
+        "teacherGuid": "00000000-0000-0000-0000-0000000000aa",
+        "teacherName": "מורה"
+      }
+    ],
+    "groupInactiveTeachers": []
+  },
+  {
+    "groupId": 4346,
+    "groupName": "חינוך גופני יב2",
+    "subjectName": "חינוך גופני",
+    "groupTeachers": [
+      {
+        "teacherGuid": "00000000-0000-0000-0000-0000000000aa",
+        "teacherName": "מורה"
+      }
+    ],
+    "groupInactiveTeachers": []
+  },
+  {
+    "groupId": 5272,
+    "groupName": "פיזיקה מורחב יב2-יב3",
+    "subjectName": "פיזיקה מורחב",
+    "groupTeachers": [
+      {
+        "teacherGuid": "00000000-0000-0000-0000-0000000000aa",
+        "teacherName": "מורה"
+      }
+    ],
+    "groupInactiveTeachers": []
+  },
+  {
+    "groupId": 7868,
+    "groupName": "חינוך יב2",
+    "subjectName": "חינוך",
+    "groupTeachers": [
+      {
+        "teacherGuid": "00000000-0000-0000-0000-0000000000aa",
+        "teacherName": "מורה"
+      }
+    ],
+    "groupInactiveTeachers": []
+  },
+  {
+    "groupId": 7942,
+    "groupName": "היסטוריה יב2",
+    "subjectName": "היסטוריה",
+    "groupTeachers": [
+      {
+        "teacherGuid": "00000000-0000-0000-0000-0000000000aa",
+        "teacherName": "מורה"
+      }
+    ],
+    "groupInactiveTeachers": []
+  },
+  {
+    "groupId": 8550,
+    "groupName": "מתמטיקה 5 יח\"ל יב2",
+    "subjectName": "מתמטיקה 5 יח\"ל",
+    "groupTeachers": [
+      {
+        "teacherGuid": "00000000-0000-0000-0000-0000000000aa",
+        "teacherName": "מורה"
+      }
+    ],
+    "groupInactiveTeachers": []
+  }
+]

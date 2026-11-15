@@ -1,0 +1,63 @@
+{
+  "conversationId": "00000000-0000-4000-8000-000000000002",
+  "subject": "הודעה 1",
+  "sendTime": "2026-10-08T12:27:32",
+  "isNew": false,
+  "hasDrafts": false,
+  "hasAttachments": true,
+  "messages": [
+    {
+      "messageId": "00000000-0000-4000-8000-000000000002",
+      "conversationId": "00000000-0000-4000-8000-000000000002",
+      "senderId": "00000000-0000-4000-8000-000000000003",
+      "senderName": "מורה 1",
+      "subject": "הודעה 1",
+      "body": "<p><span style=\"font-family: Arial, sans-serif\">תלמידים יקרים, זו הודעה לדוגמה.</span></p>",
+      "lastUpdate": "2026-10-08T12:27:32",
+      "sendTime": "2026-10-08T12:27:32",
+      "recipients": [
+        {
+          "displayOrder": 0,
+          "cssClass": "mshv-contact mshv-contact-student",
+          "value": "00000000-0000-4000-8000-000000000027",
+          "valueType": "User",
+          "targetType": "User",
+          "displayName": "תלמיד/ה"
+        }
+      ],
+      "cc": [
+        {
+          "displayOrder": 4,
+          "cssClass": "mshv-contact mshv-contact-teacher",
+          "value": "00000000-0000-4000-8000-000000000028",
+          "valueType": "ClassCode",
+          "targetType": "Educators",
+          "displayName": "קבוצה",
+          "isGroup": true
+        }
+      ],
+      "folder": 2,
+      "isNew": false,
+      "isDeleted": false,
+      "files": [
+        {
+          "fileId": "00000000-0000-4000-8000-000000000029",
+          "fileName": "קובץ-1.pdf",
+          "ownerGroupType": "Attachment",
+          "ownerGroup": "00000000-0000-4000-8000-000000000002",
+          "uploaderId": "00000000-0000-4000-8000-000000000003",
+          "uploadTime": "2026-10-08T12:11:35"
+        }
+      ],
+      "labels": [],
+      "sendOnBehalf": false,
+      "sendViaEmail": false,
+      "sendViaSms": false,
+      "preventReply": false,
+      "sentViaEmail": false,
+      "sentViaSms": false
+    }
+  ],
+  "labels": [],
+  "preventReply": false
+}

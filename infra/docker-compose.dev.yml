@@ -1,0 +1,16 @@
+# Local Postgres only — run the API from the host with `npm run server:dev`.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sederyom
+      POSTGRES_PASSWORD: sederyom
+      POSTGRES_DB: sederyom
+      TZ: Asia/Jerusalem
+    ports:
+      - "55433:5432"
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+
+volumes:
+  dev-db-data:

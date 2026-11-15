@@ -1,0 +1,220 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  .fx { direction: rtl; text-align: right; font-family: 'Assistant', system-ui, sans-serif; }
+  .fx h2, .fx h3, .fx p { text-align: right; }
+  .fx .q { margin: 2.2rem 0 .4rem; }
+  .fx .card-image { aspect-ratio: auto !important; padding: 18px 10px; background: #EEF1F7 !important; }
+  .fx .card-body p { line-height: 1.5; }
+  .fx .rec { display: inline-block; background: rgba(255,214,0,.45); color: #1A2347; font-weight: 700; font-size: .75rem; padding: 1px 8px; border-radius: 6px; margin-inline-start: 6px; }
+
+  /* the phone */
+  .ph { width: 270px; height: 520px; background: #fff; border: 1px solid #C9D2E3; border-radius: 26px; overflow: hidden;
+        display: flex; flex-direction: column; color: #1A2347; font-family: 'Assistant', system-ui, sans-serif; direction: rtl; box-shadow: 0 6px 18px rgba(26,35,71,.10); }
+  .ph * { box-sizing: border-box; }
+  .ph .body { flex: 1; overflow: hidden; }
+  .ph .hdr { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 16px 6px; }
+  .ph .hdr .t { font-size: 24px; font-weight: 800; line-height: 1.05; }
+  .ph .hdr .s { font-size: 12px; color: #4A5472; margin-top: 3px; }
+  .ph .icons { display: flex; gap: 10px; align-items: center; padding-top: 4px; }
+  .ph .ic { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; }
+  .ph .ic.hl { background: rgba(255,214,0,.55); outline: 2px solid rgba(255,214,0,.9); width: 30px; height: 30px; }
+  .ph .row { display: flex; border-top: 1px solid #D6E0EE; min-height: 44px; }
+  .ph .tm { width: 52px; flex: none; border-left: 1.5px solid rgba(232,80,91,.55); padding: 7px 8px 0 0; font-size: 12px; color: #2347C5; font-weight: 600; }
+  .ph .tm small { display: block; color: #5A6482; font-weight: 400; }
+  .ph .ct { flex: 1; padding: 7px 10px 6px; font-size: 14px; font-weight: 700; }
+  .ph .ct small { display: block; font-weight: 400; color: #4A5472; font-size: 12px; }
+  .ph .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-inline-end: 5px; vertical-align: 2px; }
+  .ph .now { border-bottom: 2px dashed #2347C5; }
+  .ph .friendline { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(35,71,197,.06); border-top: 1px solid #D6E0EE; font-size: 12.5px; }
+  .ph .friendline b { font-weight: 700; }
+  .ph .av { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid #2347C5; color: #2347C5; font-size: 11px; font-weight: 800; display: grid; place-items: center; flex: none; background: #fff; }
+  .ph .avs { display: flex; }
+  .ph .avs .av + .av { margin-inline-start: -6px; }
+  .ph .sec { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px 6px; font-weight: 800; font-size: 16px; }
+  .ph .chip { font-size: 11px; font-weight: 600; border: 1px solid #D6E0EE; border-radius: 8px; padding: 2px 8px; color: #4A5472; }
+  .ph .tabs { display: flex; border-top: 1px solid #D6E0EE; padding: 6px 2px 8px; }
+  .ph .tab { flex: 1; text-align: center; font-size: 10.5px; color: #4A5472; }
+  .ph .tab i { display: block; width: 34px; height: 20px; margin: 0 auto 2px; border-radius: 10px; }
+  .ph .tab i::after { content: ''; display: block; width: 14px; height: 14px; margin: 3px auto; border: 1.6px solid #4A5472; border-radius: 4px; }
+  .ph .tab.on { color: #1A2347; font-weight: 700; }
+  .ph .tab.on i { background: rgba(255,214,0,.55); }
+  .ph .tab.on i::after { border-color: #1A2347; }
+  .ph .tab.new { color: #2347C5; font-weight: 700; }
+  .ph .subtabs { display: flex; gap: 6px; padding: 6px 12px 10px; flex-wrap: wrap; }
+  .ph .st { font-size: 12px; padding: 3px 9px; border-radius: 8px; color: #4A5472; border: 1px solid #E5EBF4; }
+  .ph .st.on { background: rgba(255,214,0,.55); color: #1A2347; font-weight: 700; border-color: transparent; }
+  .ph .fr { display: flex; gap: 10px; align-items: center; padding: 10px 14px; border-top: 1px solid #D6E0EE; }
+  .ph .fr .av { width: 32px; height: 32px; font-size: 14px; }
+  .ph .fr .n { font-weight: 800; font-size: 15px; }
+  .ph .fr .d { font-size: 12px; color: #4A5472; }
+  .ph .fr .d b { color: #1A2347; }
+  .ph .add { margin: 12px 14px; text-align: center; color: #2347C5; font-weight: 700; font-size: 14px; border: 1.5px dashed #9FB0D8; border-radius: 10px; padding: 9px; }
+
+  /* friend page */
+  .ph .days { display: flex; justify-content: space-around; padding: 4px 8px 8px; font-size: 13px; color: #4A5472; }
+  .ph .days span.on { color: #2347C5; font-weight: 800; border-bottom: 3px solid #2347C5; padding-bottom: 1px; }
+  .ph .facts { padding: 2px 14px 8px; font-size: 13px; line-height: 1.7; }
+  .ph .facts b { font-weight: 800; }
+  .ph .hlt { background: rgba(255,214,0,.45); padding: 0 4px; border-radius: 3px; }
+  .ph table.cmp { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .ph table.cmp th { font-size: 11px; color: #4A5472; font-weight: 600; padding: 4px 4px; text-align: center; border-bottom: 1px solid #D6E0EE; }
+  .ph table.cmp td { border-top: 1px solid #E5EBF4; padding: 5px 4px; text-align: center; height: 30px; }
+  .ph table.cmp td.p { width: 44px; color: #2347C5; font-weight: 600; font-size: 11.5px; border-left: 1.5px solid rgba(232,80,91,.55); }
+  .ph table.cmp td.p small { display: block; color: #5A6482; font-weight: 400; font-size: 10px; }
+  .ph table.cmp td.both { background: rgba(35,71,197,.07); font-weight: 700; }
+  .ph table.cmp td.both small { display: block; font-weight: 600; color: #2347C5; font-size: 10px; }
+  .ph table.cmp td.win { background: rgba(255,214,0,.40); font-weight: 700; }
+  .ph table.cmp td.empty { color: #9AA3BC; }
+  .ph table.wk { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .ph table.wk th { font-size: 11px; color: #4A5472; font-weight: 600; padding: 4px; border-bottom: 1px solid #D6E0EE; text-align: center; }
+  .ph table.wk td { border-top: 1px solid #E5EBF4; padding: 7px 4px; text-align: center; vertical-align: top; }
+  .ph table.wk td.dy { font-weight: 800; width: 34px; border-left: 1.5px solid rgba(232,80,91,.55); }
+  .ph table.wk td small { display: block; color: #4A5472; font-size: 10.5px; }
+  .ph .tog { font-weight: 800; color: #1E7346; }
+  .ph .shareline { margin: 8px 14px 0; font-size: 11.5px; color: #4A5472; }
+</style>
+
+<div class="fx">
+<h2>חברים: שתי שאלות של מראה</h2>
+<p class="subtitle">סקיצות בסגנון המחברת של האפליקציה. הדוגמה: נועה, מכיתה אחרת באותו בית ספר, משתפת מערכת וחיסורים. אפשר ללחוץ על האפשרות שמתאימה בכל שאלה, ולכתוב בצ׳אט מה לשנות.</p>
+
+<h3 class="q">1. איפה גר אזור החברים?</h3>
+<div class="cards">
+
+  <div class="card" data-choice="place-header" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="ph">
+        <div class="body">
+          <div class="hdr">
+            <div><div class="t">יום שני</div><div class="s">2.11.2026, כ״ב בחשוון</div></div>
+            <div class="icons">
+              <span class="ic hl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A2347" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 13.6c2.6.2 4.5 2 4.5 4.9"/></svg></span>
+              <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A2347" stroke-width="2"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></span>
+              <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A2347" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></span>
+            </div>
+          </div>
+          <div class="row now"><div class="tm">09:20</div><div class="ct">ביולוגיה עד 09:30<small>ב־09:45 מתמטיקה</small></div></div>
+          <div class="friendline"><span class="avs"><span class="av">נ</span><span class="av">י</span></span><span>מסיימים איתך ב־14:00: <b>נועה, יואב</b></span></div>
+          <div class="friendline" style="background:rgba(255,214,0,.22)"><span class="avs"><span class="av">נ</span></span><span>חלון משותף עם <b>נועה</b> <bdi dir="ltr">11:15–12:20</bdi></span></div>
+          <div class="sec">מהלך היום <span class="chip">רק בית ספר</span></div>
+          <div class="row"><div class="tm">08:00<small><bdi dir="ltr">1–2</bdi></small></div><div class="ct"><span class="dot" style="background:#E8692C"></span>ביולוגיה<small>נטע אלון, מעבדה</small></div></div>
+          <div class="row"><div class="tm">09:45<small>3</small></div><div class="ct"><span class="dot" style="background:#2F7DE1"></span>מתמטיקה<small>אסנת קליין, חדר 214</small></div></div>
+        </div>
+        <div class="tabs">
+          <div class="tab on"><i></i>היום שלי</div><div class="tab"><i></i>שבוע</div><div class="tab"><i></i>תכנון</div><div class="tab"><i></i>משימות</div><div class="tab"><i></i>בית ספר</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>א. כפתור למעלה, ושורה במסך ״היום״ <span class="rec">ההמלצה שלי</span></h3>
+      <p>חמש הלשוניות נשארות כמו שהן. כפתור חברים ליד הפעמון פותח את מסך החברים. במסך ״היום״ מופיעה שורה רק כשיש משהו משותף. הסיבה להמלצה: המידע שהכי שימושי ביום־יום מופיע כבר ב״היום״, ומסך מלא נמצא במרחק לחיצה אחת.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="place-tab" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="ph">
+        <div class="body">
+          <div class="hdr"><div><div class="t">חברים</div><div class="s">היום, יום שני</div></div><div class="icons"></div></div>
+          <div class="fr"><span class="av">נ</span><div><div class="n">נועה</div><div class="d">מסיימים יחד ב־<b>14:00</b>, חלון משותף 11:15</div></div></div>
+          <div class="fr"><span class="av">י</span><div><div class="n">יואב</div><div class="d">מתחילים יחד ב־<b>08:00</b>, מסיימים יחד 14:00</div></div></div>
+          <div class="fr"><span class="av">ש</span><div><div class="n">שירה</div><div class="d">סוף היום: שירה 12:20, שלך 14:00</div></div></div>
+          <div class="fr"><span class="av" style="border-style:dashed;color:#5A6482;border-color:#9AA3BC">ד</span><div><div class="n" style="color:#5A6482">דניאל</div><div class="d">מחכים לאישור</div></div></div>
+          <div class="add">+ להוסיף חבר</div>
+        </div>
+        <div class="tabs">
+          <div class="tab"><i></i>היום שלי</div><div class="tab"><i></i>שבוע</div><div class="tab"><i></i>תכנון</div><div class="tab"><i></i>משימות</div><div class="tab"><i></i>בית ספר</div><div class="tab new on"><i></i>חברים</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>ב. לשונית שישית ״חברים״</h3>
+      <p>אי אפשר לפספס את הפיצ׳ר, וזה טוב אם הוא אמור להביא משתמשים חדשים. מצד שני, שש לשוניות צפופות, והתוויות שלהן קטנות יותר בטלפון עם גופן גדול.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="place-school" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="ph">
+        <div class="body">
+          <div class="hdr"><div><div class="t">בית ספר</div><div class="s">ציונים, מבחנים, הודעות</div></div><div class="icons"></div></div>
+          <div class="subtabs"><span class="st">ציונים</span><span class="st">מבחנים</span><span class="st">הודעות</span><span class="st">חיסורים</span><span class="st">בגרות</span><span class="st on">חברים</span></div>
+          <div class="fr"><span class="av">נ</span><div><div class="n">נועה</div><div class="d">מסיימים יחד ב־<b>14:00</b>, חלון משותף 11:15</div></div></div>
+          <div class="fr"><span class="av">י</span><div><div class="n">יואב</div><div class="d">מתחילים יחד ב־<b>08:00</b>, מסיימים יחד 14:00</div></div></div>
+          <div class="fr"><span class="av">ש</span><div><div class="n">שירה</div><div class="d">סוף היום: שירה 12:20, שלך 14:00</div></div></div>
+          <div class="add">+ להוסיף חבר</div>
+        </div>
+        <div class="tabs">
+          <div class="tab"><i></i>היום שלי</div><div class="tab"><i></i>שבוע</div><div class="tab"><i></i>תכנון</div><div class="tab"><i></i>משימות</div><div class="tab on"><i></i>בית ספר</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>ג. לשונית משנה בתוך ״בית ספר״</h3>
+      <p>לא נוגעים בסרגל התחתון, והחיסורים של חברים יושבים ליד החיסורים שלך. מצד שני, החברים קבורים שתי לחיצות פנימה, ושם קשה לחשוב על ״עם מי אני מסיים היום״.</p>
+    </div>
+  </div>
+</div>
+
+<h3 class="q">2. מה רואים קודם כשנכנסים לחבר?</h3>
+<div class="cards">
+
+  <div class="card" data-choice="friend-day" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="ph">
+        <div class="body">
+          <div class="hdr"><div><div class="t">נועה</div><div class="s">יום שני 2.11, י״א 3</div></div><div class="icons"><span class="chip">מה משותף</span></div></div>
+          <div class="days"><span>א׳</span><span class="on">ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span><span>ו׳</span></div>
+          <div class="facts">
+            <div>מסיימים יחד ב־<b>14:00</b></div>
+            <div><span class="hlt">חלון משותף <bdi dir="ltr">11:15–12:20</bdi></span></div>
+            <div>התחלה: שלך 08:00, של נועה 08:45</div>
+          </div>
+          <table class="cmp">
+            <tr><th></th><th>שלך</th><th>נועה</th></tr>
+            <tr><td class="p">1<small>08:00</small></td><td>ביולוגיה</td><td class="empty">עוד לא</td></tr>
+            <tr><td class="p">2<small>08:45</small></td><td>ביולוגיה</td><td>כימיה</td></tr>
+            <tr><td class="p">3<small>09:45</small></td><td class="both" colspan="2">מתמטיקה<small>ביחד</small></td></tr>
+            <tr><td class="p">4<small>10:30</small></td><td class="both" colspan="2">אנגלית<small>ביחד</small></td></tr>
+            <tr><td class="p">5<small>11:35</small></td><td class="win" colspan="2">חלון משותף</td></tr>
+            <tr><td class="p">6<small>12:20</small></td><td>אזרחות</td><td>היסטוריה</td></tr>
+            <tr><td class="p">7<small>13:15</small></td><td>ספרות</td><td>תנ״ך</td></tr>
+          </table>
+        </div>
+        <div class="tabs" style="justify-content:space-around;font-size:12px;color:#2347C5;font-weight:700"><span>מערכת</span><span style="color:#4A5472;font-weight:400">מבחנים</span><span style="color:#4A5472;font-weight:400">חיסורים</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>1. יום אחד בשני טורים</h3>
+      <p>המערכת שלך והמערכת של החבר זו לצד זו, שעה מול שעה. שיעורים ביחד מאוחדים, וחלון משותף מסומן בצהוב. כולל השינויים של היום, כי זה בא מאותה מערכת שהאפליקציה כבר מציגה. בחירת יום עוברת על השבוע.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="friend-week" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="ph">
+        <div class="body">
+          <div class="hdr"><div><div class="t">נועה</div><div class="s">השבוע <bdi dir="ltr">1–6.11</bdi>, י״א 3</div></div><div class="icons"><span class="chip">מה משותף</span></div></div>
+          <div class="facts" style="padding-top:6px">השבוע: <b>3 ימים</b> מסיימים יחד, <b>4 שיעורים</b> ביחד</div>
+          <table class="wk">
+            <tr><th></th><th>התחלה</th><th>סוף</th><th>חלון משותף</th></tr>
+            <tr><td class="dy">א׳</td><td class="tog">יחד 08:00</td><td>13:15<small>נועה 14:00</small></td><td>–</td></tr>
+            <tr style="background:rgba(35,71,197,.06)"><td class="dy">ב׳</td><td>08:00<small>נועה 08:45</small></td><td class="tog">יחד 14:00</td><td><span class="hlt"><bdi dir="ltr">11:15–12:20</bdi></span></td></tr>
+            <tr><td class="dy">ג׳</td><td class="tog">יחד 08:00</td><td class="tog">יחד 12:20</td><td>–</td></tr>
+            <tr><td class="dy">ד׳</td><td>08:45<small>נועה 08:00</small></td><td>14:45<small>נועה 13:15</small></td><td><span class="hlt"><bdi dir="ltr">10:30–11:15</bdi></span></td></tr>
+            <tr><td class="dy">ה׳</td><td class="tog">יחד 08:00</td><td>13:15<small>נועה 14:00</small></td><td>–</td></tr>
+            <tr><td class="dy">ו׳</td><td class="tog">יחד 08:00</td><td class="tog">יחד 11:15</td><td>–</td></tr>
+          </table>
+          <div class="shareline">לחיצה על יום פותחת אותו בשני טורים</div>
+        </div>
+        <div class="tabs" style="justify-content:space-around;font-size:12px;color:#2347C5;font-weight:700"><span>מערכת</span><span style="color:#4A5472;font-weight:400">מבחנים</span><span style="color:#4A5472;font-weight:400">חיסורים</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>2. השבוע במבט אחד</h3>
+      <p>שורה לכל יום: מתי מתחילים, מתי מסיימים, ואיפה החלון המשותף. ״יחד״ בירוק כשזה אותה שעה. טוב לתכנון כמו ״באיזה יום חוזרים יחד הביתה״. לחיצה על יום פותחת אותו בשני טורים.</p>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,50 @@
+[
+  {
+    "studentGuid": "00000000-0000-0000-0000-000000000001",
+    "groupId": 8550,
+    "lessonsCount": 21,
+    "weeklyHours": 7
+  },
+  {
+    "studentGuid": "00000000-0000-0000-0000-000000000001",
+    "groupId": 367,
+    "lessonsCount": 11,
+    "weeklyHours": 4
+  },
+  {
+    "studentGuid": "00000000-0000-0000-0000-000000000001",
+    "groupId": 7868,
+    "lessonsCount": 5,
+    "weeklyHours": 1
+  },
+  {
+    "studentGuid": "00000000-0000-0000-0000-000000000001",
+    "groupId": 181,
+    "lessonsCount": 19,
+    "weeklyHours": 8
+  },
+  {
+    "studentGuid": "00000000-0000-0000-0000-000000000001",
+    "groupId": 5272,
+    "lessonsCount": 33,
+    "weeklyHours": 8
+  },
+  {
+    "studentGuid": "00000000-0000-0000-0000-000000000001",
+    "groupId": 7942,
+    "lessonsCount": 6,
+    "weeklyHours": 2
+  },
+  {
+    "studentGuid": "00000000-0000-0000-0000-000000000001",
+    "groupId": 4346,
+    "lessonsCount": 3,
+    "weeklyHours": 2
+  },
+  {
+    "studentGuid": "00000000-0000-0000-0000-000000000001",
+    "groupId": 2882,
+    "lessonsCount": 6,
+    "weeklyHours": 4
+  }
+]

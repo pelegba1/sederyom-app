@@ -1,0 +1,387 @@
+// SederYom data model — design-doc §9.
+// Everything date-like that represents a *calendar day* is stored as a
+// `YYYY-MM-DD` string in Asia/Jerusalem; instants are stored as DateTime (UTC).
+
+generator client {
+  provider      = "prisma-client-js"
+  // `native` covers local dev and the Alpine Docker image. The second target is
+  // Vercel's Node runtime; generating it explicitly avoids depending on the
+  // build container and the function runtime happening to match.
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  // Pooled connection for the app. On Neon this is the `-pooler` host; a
+  // serverless function opens a connection per invocation and would exhaust a
+  // direct one.
+  url       = env("DATABASE_URL")
+  // Unpooled, for migrations only. Optional: falls back to `url` when unset,
+  // which is what the Docker/VM deployment uses.
+  directUrl = env("DIRECT_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Many students (plan Phase 2). The server keeps only what is public per
+// school and class — the Shahaf site's grid and its changes — and, per device,
+// the address to push to and what that device wants pushed. Nothing here is a
+// student's credential, grade or homework: those stay on the phone. The single
+// owner's tables went with plan 2f (`20261023200000_drop_owner_tables`).
+// ---------------------------------------------------------------------------
+
+/// A school, known by its Shahaf site (what Mashov's `/api/shahaf/coolSite` answers).
+model School {
+  id               String        @id @default(cuid())
+  /// `https://<school>.shahaf.site`, normalized: lower case, no trailing slash.
+  shahafUrl        String        @unique
+  /// Mashov's school id (סמל מוסד), when a device has told us.
+  semel            Int?
+  /// The school's absence limit, a percent; null: the usual 15.
+  limitPercent     Float?
+  /// "איפה המורה?": today's day of every teacher, read from all the site's classes
+  /// (`StoredTeacherDay`, routes/teachers.ts). Kept half an hour; never snapshots or events.
+  teacherDay       Json?
+  teacherDayReadAt DateTime?
+  teacherDayError  String?
+  createdAt        DateTime      @default(now())
+  classes          SchoolClass[]
+
+  @@map("school")
+}
+
+/// One class on a school's Shahaf site, polled while at least one device follows it
+/// (`Device.classId`, or a `ClassFollow` row).
+model SchoolClass {
+  id                String        @id @default(cuid())
+  schoolId          String
+  school            School        @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  /// The site's `cls` value.
+  shahafClassId     String
+  name              String
+  /// When the class's site was last polled, successful or not: the poll queue's order.
+  polledAt          DateTime?
+  lastOkAt          DateTime?
+  lastError         String?
+  /// The site's "מעודכן ל" for this class.
+  freshness         DateTime?
+  /// The grade's exam schedule as a public Google calendar, when one is known for this class.
+  examCalendarId    String?
+  /// The device that set `examCalendarId`: only it replaces or clears it, while it follows the class.
+  /// A plain id, not a relation: a deleted device's id stays, and no longer follows anything.
+  examCalendarSetBy String?
+  /// The calendar's exams as last read (`ClassExam[]`, source `school_site`).
+  exams             Json?
+  examsPolledAt     DateTime?
+  examsOkAt         DateTime?
+  examsError        String?
+  /// `upload` when the class's exam board was brought from a link or a file; null otherwise (a calendar is `examCalendarId`).
+  examBoardKind     String?
+  /// When the exam board was last set.
+  examBoardSetAt    DateTime?
+  /// When the class was told that it has an exam board: once, so setting it again does not tell it again.
+  examBoardAnnouncedAt DateTime?
+  /// The last day frozen into `ClassLessonHistory` (`history/run.ts`); null before the first.
+  historyFrozenTo     String?
+  /// The Sunday of the earliest week filled from the site's past weeks (`history/backfill.ts`).
+  historyBackfilledTo String?
+  /// The fill reached the school year's first week: nothing more to fetch.
+  historyBackfillDone Boolean       @default(false)
+  createdAt         DateTime      @default(now())
+  devices           Device[]
+  follows           ClassFollow[]
+
+  @@unique([schoolId, shahafClassId])
+  @@index([polledAt])
+  @@map("school_class")
+}
+
+/// An installed app. Its credential is a random token the server hands out
+/// once and keeps only as a SHA-256 hash.
+model Device {
+  id           String        @id @default(cuid())
+  tokenHash    String        @unique
+  /// android | ios
+  platform     String
+  pushToken    String?       @unique
+  classId      String?
+  class        SchoolClass?  @relation(fields: [classId], references: [id], onDelete: SetNull)
+  /// `DevicePrefs` (shared): which pushes, quiet hours, the class's lines that are not this student's.
+  prefs        Json
+  createdAt    DateTime      @default(now())
+  lastSeenAt   DateTime      @default(now())
+  /// Exam board previews counted in the window that began at `boardPreviewWindowAt`: at most 10 an hour.
+  boardPreviewCount    Int       @default(0)
+  boardPreviewWindowAt DateTime?
+  /// The classes it follows besides `classId`: a parent's other children.
+  follows      ClassFollow[]
+  /// The friends' boxes it wrote (`BuddyBox`).
+  buddyBoxes   BuddyBox[]
+  /// The pairing codes it has shown the student (`ChatCode`).
+  chatCodes    ChatCode[]
+  /// The chats linked to it (`ChatGrant`).
+  chatGrants   ChatGrant[]
+  /// What it last wrote for its chats to read, sealed (`ChatSnapshot`).
+  chatSnapshot ChatSnapshot?
+
+  @@index([classId])
+  @@map("device")
+}
+
+/// A friend's encrypted box (docs/superpowers/specs/2026-10-29-friends-design.md §4.2, §5).
+/// The server stores ciphertext under an id derived from a secret it never sees.
+model BuddyBox {
+  id             String   @id
+  /// Empty only for a mark: a used link's emptied `invite` or `reply` (`ciphertext` `''`) whose
+  /// writing device is gone. The device's delete (`DELETE /v2/device`) empties its live
+  /// `invite`/`reply` rows and deletes its `pair` rows before the row goes, and settles any live
+  /// row the delete left with no writer in the same way once it has, so that a row with no
+  /// writer is always a mark: nobody writes it again, and the link cannot be armed under the
+  /// inviter's name. `SetNull`, not `Cascade`, for that reason.
+  writerDeviceId String?
+  writer         Device?  @relation(fields: [writerDeviceId], references: [id], onDelete: SetNull)
+  /// `invite` | `reply` | `pair`
+  kind           String
+  ciphertext     String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([writerDeviceId])
+  @@index([updatedAt])
+  @@map("buddy_box")
+}
+
+/// A class a device follows besides its own (`Device.classId`): a parent's other
+/// children, at most five (`MAX_FOLLOWED_CLASSES`). The children's names stay on
+/// the phone; the server knows classes, as it does for a student.
+model ClassFollow {
+  deviceId  String
+  device    Device      @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  classId   String
+  class     SchoolClass @relation(fields: [classId], references: [id], onDelete: Cascade)
+  /// `{ hiddenSubjects }`: this class's lines that are not this child's, as `DevicePrefs.hiddenSubjects`.
+  prefs     Json
+  /// When the device began following it: it hears of what changed after.
+  createdAt DateTime    @default(now())
+
+  @@id([deviceId, classId])
+  @@index([classId])
+  @@map("class_follow")
+}
+
+/// `Snapshot`, per class: the delta engine's memory of one class's site.
+model ClassSnapshot {
+  classId     String
+  kind        String
+  naturalKey  String
+  contentHash String
+  partition   String?
+  payload     Json
+  firstSeen   DateTime  @default(now())
+  lastSeen    DateTime
+  deletedAt   DateTime?
+
+  @@id([classId, kind, naturalKey])
+  @@index([classId, kind, partition])
+  @@map("class_snapshot")
+}
+
+/// `ChangeEvent`, per class. `notifiedAt` is set once every device in the class has been considered.
+model ClassChangeEvent {
+  id         Int       @id @default(autoincrement())
+  classId    String
+  kind       String
+  naturalKey String
+  change     String
+  payload    Json
+  createdAt  DateTime  @default(now())
+  notifiedAt DateTime?
+
+  @@index([notifiedAt])
+  @@index([classId, createdAt])
+  @@map("class_change_event")
+}
+
+/// What each lesson was when it began: one row per lesson that passed, written once and never
+/// changed (docs/superpowers/specs/2026-11-10-year-wrapped-design.md §1). `observed` rows come from
+/// the change events (`history/freeze.ts`); `backfill` rows from the site's past weeks, which keep
+/// the regular grid and almost none of its changes, so they never count as a change.
+model ClassLessonHistory {
+  classId      String
+  date         String
+  hourIndex    Int
+  subject      String
+  /// '' when the lesson names none: part of the key, as in the lesson's natural key.
+  teacher      String    @default("")
+  room         String?
+  startTime    String?
+  endTime      String?
+  /// A `LessonStatus`, or null when the lesson had no start time to judge it by.
+  status       String?
+  substitute   String?
+  note         String?
+  /// `observed` | `backfill`
+  source       String
+  /// When the change the row holds was first seen; null for a regular lesson.
+  changeSeenAt DateTime?
+  frozenAt     DateTime  @default(now())
+
+  @@id([classId, date, hourIndex, subject, teacher])
+  @@index([classId, date])
+  @@map("class_lesson_history")
+}
+
+/// An exam whose day has passed, written once: from the class's site or the grade's calendar.
+model ClassExamHistory {
+  classId    String
+  naturalKey String
+  date       String
+  subject    String
+  details    String?
+  /// `shahaf` | `school_site`
+  source     String
+  frozenAt   DateTime @default(now())
+
+  @@id([classId, naturalKey])
+  @@index([classId, date])
+  @@map("class_exam_history")
+}
+
+/// Pushes sent to devices, one row per (device, dedupe key): never the same news twice.
+model DeviceNotification {
+  id        Int      @id @default(autoincrement())
+  deviceId  String
+  type      String
+  title     String
+  body      String
+  dedupeKey String
+  /// The class change events the push carried: a later batch leaves them out.
+  eventIds  Int[]    @default([])
+  sentAt    DateTime @default(now())
+
+  @@unique([deviceId, dedupeKey])
+  @@index([sentAt])
+  @@map("device_notification")
+}
+
+// ---------------------------------------------------------------------------
+// Chat connection (docs/superpowers/specs/2026-11-04-chat-connection-design.md §4, §5).
+// A student's chat (ChatGPT, Claude, ...) reads a snapshot the phone seals with a
+// key K the server never keeps: K sits in the pairing code's row only until the
+// code is spent, then rides inside the tokens the chat holds. Every table goes
+// with the device (`Cascade`), except a demo grant, which has no device.
+// ---------------------------------------------------------------------------
+
+/// A chat that registered itself (`POST /oauth/register`, RFC 7591).
+model ChatClient {
+  /// The `client_id` the chat is given.
+  id           String      @id @default(cuid())
+  name         String
+  redirectUris String[]
+  createdAt    DateTime    @default(now())
+  /// When the page first made a grant for it (a right code, the demo's too). A chat keeps its
+  /// `client_id` after the student disconnects it, so a client once linked is never swept; one
+  /// never linked goes a week after it registered (`sync/tick.ts`).
+  linkedAt     DateTime?
+  grants       ChatGrant[]
+
+  @@map("chat_client")
+}
+
+/// A pairing code the app showed the student: the 8 characters they type on the
+/// authorize page. Ten minutes; the row is deleted once the code is spent.
+model ChatCode {
+  id        String   @id @default(cuid())
+  /// A hash of the normalized code: the code itself is never stored.
+  codeHash  String   @unique
+  deviceId  String
+  device    Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  /// K, base64url, which the phone sent with the request. The row is deleted when the code
+  /// is spent (K moves on into the authorization code, `ChatAuthCode.key`).
+  key       String?
+  expiresAt DateTime
+
+  @@map("chat_code")
+}
+
+/// An OAuth authorization code: what the authorize page hands back to the chat's
+/// `redirect_uri`, spent once at `/oauth/token`. Sixty seconds.
+model ChatAuthCode {
+  /// A hash of the code.
+  codeHash      String    @id
+  grantId       String
+  grant         ChatGrant @relation(fields: [grantId], references: [id], onDelete: Cascade)
+  /// K, base64url: the token endpoint puts it into the tokens it issues. A demo grant has no K;
+  /// its codes carry the base64url of 32 zero bytes, which opens nothing, so this stays non-null.
+  key           String
+  /// PKCE (RFC 7636), `S256`.
+  codeChallenge String
+  redirectUri   String
+  expiresAt     DateTime
+
+  @@map("chat_auth_code")
+}
+
+/// One chat linked to one device: what the student sees in the app's list, and what
+/// "disconnect" deletes.
+model ChatGrant {
+  id         String         @id @default(cuid())
+  /// Null only for a demo grant (`demo`), which reads built-in data and belongs to no device.
+  deviceId   String?
+  device     Device?        @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  clientId   String
+  client     ChatClient     @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  /// The fixed demo code (`CHAT_DEMO_CODE`) made this grant: `/mcp` builds its copy from the demo data.
+  demo       Boolean        @default(false)
+  /// When the student confirmed the chat in the app; until then its tokens give no access.
+  /// Null while it waits for that. A chat from a known host, and a demo grant, are approved at once.
+  approvedAt DateTime?
+  createdAt  DateTime       @default(now())
+  /// The last `/mcp` call made with one of its tokens.
+  lastUsedAt DateTime?
+  authCodes  ChatAuthCode[]
+  tokens     ChatToken[]
+
+  @@index([deviceId])
+  @@map("chat_grant")
+}
+
+/// An access or refresh token the chat holds, kept as a hash of its random id. The
+/// token also carries K (`<id>.<K>`), which is not here.
+model ChatToken {
+  /// A hash of the token's id.
+  tokenHash String    @id
+  grantId   String
+  grant     ChatGrant @relation(fields: [grantId], references: [id], onDelete: Cascade)
+  /// `access` (an hour) | `refresh` (90 days)
+  kind      String
+  expiresAt DateTime
+  /// A refresh token only: when it was exchanged for a new pair.
+  usedAt    DateTime?
+
+  @@index([grantId])
+  @@map("chat_token")
+}
+
+/// What the phone last wrote for its chats to read (the day, the exams and so on),
+/// sealed with K. The server holds ciphertext it cannot open without a chat's token.
+model ChatSnapshot {
+  deviceId   String   @id
+  device     Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  ciphertext String
+  /// When the phone wrote this copy.
+  writtenAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("chat_snapshot")
+}
+
+/// A wrong guess at the authorize page's code, by IP: five within ten minutes and
+/// the page stops answering that address for ten minutes.
+model ChatAttempt {
+  id Int      @id @default(autoincrement())
+  ip String
+  at DateTime @default(now())
+
+  @@index([ip, at])
+  @@map("chat_attempt")
+}

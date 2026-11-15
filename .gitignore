@@ -1,0 +1,33 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.scratch/
+coverage/
+server/prisma/*.db
+app/.expo/
+app/android/
+app/ios/
+# `expo prebuild` writes the native project beside app.json; a stray copy at the
+# repo root is generated output either way and never belongs in git.
+/android/
+/ios/
+.DS_Store
+
+# Expo
+app/.env
+app/dist/
+app/google-services.json
+server/dist/
+.vercel/
+.codex-remote-attachments/
+
+# The only Expo config is app/app.json. EAS CLI run from the repo root writes an
+# empty one here ("EAS project not configured"); it never belongs in git.
+/app.json
+/eas.json
+
+# The EAS signing key, downloaded for a local build (never commit)
+app/credentials.json
+app/credentials/
